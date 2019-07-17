@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-3">
+    <h1>Nos spectacles </h1>
+    <a href="{{ path('spectacle_new') }}"><button class="mt-3 btn btn-lg btn-block btn-light">Ajouter un nouveauw spectacle</button></a>
+
+    <table class="table mt-3">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for spectacle in spectacles %}
+            <tr>
+                <th scope="row">{{ spectacle.name }}</th>
+                <td>{{ spectacle.description }}</td>
+                <td><a href="{{ path('spectacle_delete', {'id': spectacle.id}) }}"><button class="btn btn-light">Supprimer</button></a>
+                    <a href="{{ path('spectacle_edit', {'id': spectacle.id}) }}"><button class="btn btn-light mt-2">Modifier</button></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

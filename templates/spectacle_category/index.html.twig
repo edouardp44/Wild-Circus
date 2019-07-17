@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SpectacleCategory index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Catégories de spectacles</h1>
+
+        <a href="{{ path('categorySpectacle_new') }}">
+            <button class="btn btn-block btn-light btn-lg">Ajouter une nouvelle catégories</button>
+        </a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for spectacle_category in spectacle_categories %}
+                <tr>
+                    <td>{{ spectacle_category.name }}</td>
+                    <td>
+                        <a href="{{ path('categorySpectacle_edit', {'id': spectacle_category.id}) }}">Supprimer</a>
+                        <a href="{{ path('categorySpectacle_delete', {'id': spectacle_category.id}) }}">Edité</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spectacle{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h1>Tous nos Spectacle</h1>
+    <ul class="nav justify-content-center">
+        {% for category in categorys %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ path('spectacle_category', {'id': category.id} ) }}">{{ category.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% for spectacle in spectacles %}
+        <div class="row mt-5">
+            <div class="media">
+                <img src="{{ spectacle.image }}" class="mr-3" alt="...">
+                <div class="media-body">
+                    <h5 class="mt-0">{{ spectacle.name }}</h5>
+                    {{ spectacle.description }}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

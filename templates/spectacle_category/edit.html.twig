@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit SpectacleCategory{% endblock %}
+
+{% block body %}
+    <h1>Edit SpectacleCategory</h1>
+
+    {{ include('spectacle_category/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('categorySpectacle_index') }}">back to list</a>
+
+    {{ include('spectacle_category/_delete_form.html.twig') }}
+{% endblock %}

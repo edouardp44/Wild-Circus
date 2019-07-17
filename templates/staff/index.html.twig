@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Staff{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Notre équipe</h1>
+        <div class="row">
+            {% for staff in staff %}
+                <div class="col-md-4 mt-3 mb-2">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ staff.image }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ staff.name }}</h5>
+                            <p class="card-text">{{ staff.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
