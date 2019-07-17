@@ -79,6 +79,7 @@ class AnimalsCategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($animalsCategory);
             $entityManager->flush();
+            $this->addFlash('danger', "l'annimal a bien été supprimer");
         }
 
         return $this->redirectToRoute('categoryAnimal_index');
