@@ -72,14 +72,18 @@ class AnimalsController extends AbstractController
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function edit(Request $request, Animals $animal): Response
+    public function edit(Request $request, Animals $animal, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(AnimalsType::class, $animal);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+            $em = $this->getDoctrine()->getManager();
+            $file = $fileUploader->upload($form->get('image')->getData());
+            $animal->setImage($file);
+            $animal->setDate(new \DateTime('now'));
+            $em->persist($animal);
+            $em->flush();
             return $this->redirectToRoute('admin_animals');
         }
 

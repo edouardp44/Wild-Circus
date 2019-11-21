@@ -4,30 +4,33 @@
 
 {% block body %}
     <div class="container">
-    <h1>Les catégories d'annimaux </h1>
-    <a href="{{ path('categoryAnimal_new') }}"><button class="btn btn-light btn-block btn-lg">Create new</button></a>
-    <table class="table">
-        <thead>
+        <h1>Les catégories d'annimaux </h1>
+        <a href="{{ path('categoryAnimal_new') }}">
+            <button class="btn btn-light btn-block btn-lg">Create new</button>
+        </a>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Nom</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for animals_category in animals_categories %}
-            <tr>
-                <td>{{ animals_category.name }}</td>
-                <td>
-                    <a href="{{ path('categoryAnimal_edit', {'id': animals_category.id}) }}">Edité</a>
-                    <a href="{{ path('categoryAnimal_delete', {'id': animals_category.id}) }}">Supprimé</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for animals_category in animals_categories %}
+                <tr>
+                    <td scope="row">{{ animals_category.name }}</td>
+                    <td>
+                        <a href="{{ path('categoryAnimal_edit', {'id': animals_category.id}) }}">
+                            <button class="btn btn-light mt-2">Edité</button>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

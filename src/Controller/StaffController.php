@@ -76,7 +76,7 @@ class StaffController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('staff_index');
+            return $this->redirectToRoute('admin_staff');
         }
 
         return $this->render('staff/edit.html.twig', [
@@ -97,6 +97,6 @@ class StaffController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('staff_index');
+        return $this->redirectToRoute('admin_staff');
     }
 }

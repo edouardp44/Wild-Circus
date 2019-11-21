@@ -2,7 +2,9 @@
 {% block body %}
     <div class="container mt-3">
     <h1>Les annimaux du cirques</h1>
-    <a href="{{ path('animals_new') }}"><button class="mt-3 btn btn-lg btn-block btn-light">Ajouter un nouveaux animaux</button></a>
+    <a href="{{ path('animals_new') }}">
+        <button class="mt-3 btn btn-lg btn-block btn-light">Ajouter un nouveaux animaux</button>
+    </a>
     <table class="table mt-3">
         <thead class="thead-light">
         <tr>
@@ -15,14 +17,16 @@
         </thead>
         <tbody>
         {% for animal in animals %}
-        <tr>
-            <th scope="row">{{ animal.name }}</th>
-            <td>{{ animal.description }}</td>
-            <td>{{ animal.category.name }}</td>
-            <td>{{ animal.date|date('d/m/Y') }}</td>
-            <td><a href="{{ path('animals_delete', {'id': animal.id}) }}"><button class="btn btn-light">Supprimer</button></a>
-            <a href="{{ path('animals_edit', {'id': animal.id}) }}"><button class="btn btn-light mt-2">Modifier</button></a></td>
-        </tr>
+            <tr>
+                <th scope="row">{{ animal.name }}</th>
+                <td>{{ animal.description }}</td>
+                <td>{{ animal.category.name }}</td>
+                <td>{{ animal.date|date('d/m/Y') }}</td>
+                <td> {{ include('animals/_delete_form.html.twig') }}
+                    <a href="{{ path('animals_edit', {'id': animal.id}) }}">
+                        <button class="btn btn-light mt-2">Modifier</button>
+                    </a></td>
+            </tr>
         {% endfor %}
         </tbody>
     </table>

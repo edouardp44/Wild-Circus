@@ -42,7 +42,7 @@ class SpectacleCategoryController extends AbstractController
             $entityManager->persist($spectacleCategory);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_spectacle');
+            return $this->redirectToRoute('categorySpectacle_index');
         }
 
         return $this->render('spectacle_category/new.html.twig', [
@@ -62,7 +62,7 @@ class SpectacleCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_spectacle');
+            return $this->redirectToRoute('categorySpectacle_index');
         }
 
         return $this->render('spectacle_category/edit.html.twig', [

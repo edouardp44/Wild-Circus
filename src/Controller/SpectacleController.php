@@ -79,7 +79,7 @@ class SpectacleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('spectacle_index');
+            return $this->redirectToRoute('admin_spectacle');
         }
 
         return $this->render('spectacle/edit.html.twig', [
@@ -100,6 +100,6 @@ class SpectacleController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('spectacle_index');
+        return $this->redirectToRoute('admin_spectacle');
     }
 }

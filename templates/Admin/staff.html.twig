@@ -17,7 +17,7 @@
             <tr>
                 <th scope="row">{{ staff.name }}</th>
                 <td>{{ staff.description }}</td>
-                <td><a href="{{ path('staff_delete', {'id': staff.id}) }}"><button class="btn btn-light">Supprimer</button></a>
+                <td>{{ include('staff/_delete_form.html.twig') }}
                     <a href="{{ path('staff_edit', {'id': staff.id}) }}"><button class="btn btn-light mt-2">Modifier</button></a></td>
             </tr>
         {% endfor %}

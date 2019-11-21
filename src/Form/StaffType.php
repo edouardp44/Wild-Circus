@@ -15,7 +15,10 @@ class StaffType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('image', FileType::class)
+            ->add('image', FileType::class, [
+                'label' => 'image',
+                'mapped' => false,
+            ])
         ;
     }
 

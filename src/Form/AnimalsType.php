@@ -27,7 +27,7 @@ class AnimalsType extends AbstractType
         $builder->add('category', EntityType::class, [
             'class' => AnimalsCategory::class,
             'choice_label' => 'name',
-            'by_reference' => false,
+            'by_reference' => true,
         ]);
     }
 

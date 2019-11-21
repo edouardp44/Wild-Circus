@@ -39,7 +39,7 @@ class Animals
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\AnimalsCategory", inversedBy="animals")
+     * @ORM\ManyToOne(targetEntity="App\Entity\AnimalsCategory", inversedBy="animals", cascade={"persist"})
      */
     private $category;
 

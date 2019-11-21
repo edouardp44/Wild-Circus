@@ -24,7 +24,7 @@ class AnimalsCategory
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Animals", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Animals", mappedBy="category" , cascade={"persist"})
      */
     private $animals;
 
