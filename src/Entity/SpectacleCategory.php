@@ -24,7 +24,7 @@ class SpectacleCategory
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Spectacle", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Spectacle", mappedBy="category")
      */
     private $spectacles;
 
@@ -62,7 +62,7 @@ class SpectacleCategory
     {
         if (!$this->spectacles->contains($spectacle)) {
             $this->spectacles[] = $spectacle;
-            $spectacle->addCategory($this);
+            $spectacle->setCategory($this);
         }
 
         return $this;
@@ -72,7 +72,9 @@ class SpectacleCategory
     {
         if ($this->spectacles->contains($spectacle)) {
             $this->spectacles->removeElement($spectacle);
-            $spectacle->removeCategory($this);
+            if ($spectacle->getCategory() === $this) {
+                $spectacle->setCategory(null);
+            }
         }
 
         return $this;

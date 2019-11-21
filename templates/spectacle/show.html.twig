@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    Nom du spectacle :{{ spectacle.name }}
+    </br>
+    Description du spectacle{{ spectacle.description }}
+    </br>
+    {% for spectacleStaff in spectacle.staff %}
+        L'équipe : {{ spectacleStaff.name }}
+        </br>
+    {% endfor %}
+    {% for animalsSpectacle in spectacle.animals %}
+        Les annimaux : {{ animalsSpectacle.name }}
+    {% endfor %}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

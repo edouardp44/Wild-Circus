@@ -36,10 +36,11 @@ class SpectacleController extends AbstractController
     public function shwoByCategory(SpectacleCategoryRepository $categoryRepository, SpectacleCategory $spectacleCategory)
     {
         return $this->render('spectacle/showByCategory.html.twig', [
-                'categorys' => $categoryRepository->findAll(),
-                'spectacles' => $categoryRepository->findByAnimals($spectacleCategory->getId())
-            ]);
+            'categorys' => $categoryRepository->findAll(),
+            'spectacles' => $categoryRepository->findByAnimals($spectacleCategory->getId())
+        ]);
     }
+
     /**
      * @Route("/new", name="new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
@@ -94,12 +95,22 @@ class SpectacleController extends AbstractController
      */
     public function delete(Request $request, Spectacle $spectacle): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$spectacle->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $spectacle->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($spectacle);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('admin_spectacle');
+    }
+
+    /**
+     * @Route("/show/{id}", name="show")
+     */
+    public function show(Spectacle $spectacle): Response
+    {
+        return $this->render('spectacle/show.html.twig', [
+            'spectacle' => dump($spectacle),
+        ]);
     }
 }

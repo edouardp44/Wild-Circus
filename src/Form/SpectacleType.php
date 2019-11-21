@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Animals;
 use App\Entity\Spectacle;
+use App\Entity\SpectacleCategory;
 use App\Entity\Staff;
+use App\Fixtures\CategorySpectacleFixtures;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -22,14 +24,14 @@ class SpectacleType extends AbstractType
                 'data_class' => null
             ])
             ->add('name', TextType::class, ['label' => 'nom'])
-            ->add('description',TextType::class, ['label' => 'description'])
-        ;
+            ->add('description', TextType::class, ['label' => 'description']);
         $builder
             ->add('staff', EntityType::class, [
                 'class' => Staff::class,
                 'choice_label' => 'name',
                 'data_class' => null,
                 'multiple' => true,
+                'expanded' => true
             ]);
         $builder
             ->add('animals', EntityType::class, [
@@ -37,6 +39,17 @@ class SpectacleType extends AbstractType
                 'choice_label' => 'name',
                 'data_class' => null,
                 'multiple' => true,
+                'expanded' => true,
+                'label' => 'Les annimaux du spectacle',
+                'required' => false,
+
+            ]);
+        $builder
+            ->add('category', EntityType::class, [
+                'class' => SpectacleCategory::class,
+                'choice_label' => 'name',
+                'label' => 'Category',
+                'data_class' => null
             ]);
     }
 

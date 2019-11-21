@@ -44,7 +44,7 @@ class Spectacle
     private $date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\SpectacleCategory", inversedBy="spectacles")
+     * @ORM\ManyToOne(targetEntity="App\Entity\SpectacleCategory", inversedBy="spectacles")
      */
     private $category;
 
@@ -109,6 +109,7 @@ class Spectacle
         return $this->staff;
     }
 
+
     public function addStaff(Staff $staff): self
     {
         if (!$this->staff->contains($staff)) {
@@ -136,32 +137,6 @@ class Spectacle
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
-        return $this;
-    }
-
-    /**
-     * @return Collection|SpectacleCategory[]
-     */
-    public function getCategory(): Collection
-    {
-        return $this->category;
-    }
-
-    public function addCategory(SpectacleCategory $category): self
-    {
-        if (!$this->category->contains($category)) {
-            $this->category[] = $category;
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(SpectacleCategory $category): self
-    {
-        if ($this->category->contains($category)) {
-            $this->category->removeElement($category);
-        }
-
         return $this;
     }
 
@@ -209,5 +184,21 @@ class Spectacle
     {
         $this->animals = $animals;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category): void
+    {
+        $this->category = $category;
     }
 }
