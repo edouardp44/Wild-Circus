@@ -112,7 +112,7 @@ class AnimalsController extends AbstractController
     /**
      *@Route("/show/{id}", name="show")
      */
-    public function show(Animals $animals,SpectacleRepository $spectacle): Response
+    public function show(Animals $animals): Response
     {
         return $this->render('/animals/show.html.twig', [
             'animal' => $animals,

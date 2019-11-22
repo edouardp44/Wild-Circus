@@ -11,15 +11,14 @@
         <div class="col-12">
             Description : {{ animal.description }}
         </div>
-        {% for spectacleAnimal in animal.spectacles %}
-            {% if spectacleAnimal.name is defined %}
-                Il joue dans le spectacle :
-                {{ spectacleAnimal.name }}
-                </br>
-            {% else %}
-                Il ne joue dans aucun spectacle
+        <ul class="list-group list-group-horizontal">
+            {% if animal.spectacles is not empty %}
+                <li class="list-group-item">Les spectacles</li>
+                {% for spectacleAnimal in animal.spectacles %}
+                    <li class="list-group-item">{{ spectacleAnimal.name }}</li>
+                {% endfor %}
             {% endif %}
-        {% endfor %}
+        </ul>
     </div>
     </div>
 
