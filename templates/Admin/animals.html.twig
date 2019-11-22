@@ -25,7 +25,11 @@
                 <td> {{ include('animals/_delete_form.html.twig') }}
                     <a href="{{ path('animals_edit', {'id': animal.id}) }}">
                         <button class="btn btn-light mt-2">Modifier</button>
-                    </a></td>
+                    </a>
+                    <a href="{{ path('animals_show', {'id': animal.id}) }}">
+                        <button class="btn btn-light mt-2">Voir</button>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

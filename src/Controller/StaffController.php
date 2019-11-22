@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Spectacle;
 use App\Entity\Staff;
 use App\Form\StaffType;
 use App\Repository\StaffRepository;

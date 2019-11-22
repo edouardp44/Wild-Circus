@@ -1,19 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    Nom du spectacle :{{ spectacle.name }}
-    </br>
-    Description du spectacle{{ spectacle.description }}
-    </br>
-    {% for spectacleStaff in spectacle.staff %}
-        L'équipe : {{ spectacleStaff.name }}
+    <div class="container">
+        <img src="{{ asset('/uploads/images/'~ spectacle.image) }}">
+        Nom du spectacle : {{ spectacle.name }}
         </br>
-    {% endfor %}
-    {% for animalsSpectacle in spectacle.animals %}
-        Les annimaux : {{ animalsSpectacle.name }}
-    {% endfor %}
-{% endblock %}
-
-{% block title %}
-
+        Description du spectacle{{ spectacle.description }}
+        </br>
+        L'équipe :
+        {% for spectacleStaff in spectacle.staff %}
+            {{ spectacleStaff.name }}
+            </br>
+        {% endfor %}
+        Les annimaux :
+        {% for animalsSpectacle in spectacle.animals %}
+            {{ animalsSpectacle.name }}
+        {% endfor %}
+        </br>
+        <a href="{{ path('admin_spectacle') }}">
+            <button class="btn btn-light">Retour à la liste</button>
+        </a>
+    </div>
 {% endblock %}
 

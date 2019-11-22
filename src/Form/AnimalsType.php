@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Animals;
 use App\Entity\AnimalsCategory;
+use App\Entity\Spectacle;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

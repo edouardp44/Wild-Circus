@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <img src="{{ asset('/uploads/images/' ~ animal.image) }}">
+        </div>
+        <br class="row">
+        <div class="col-12">
+            Nom de l'animal : {{ animal.name }}
+        </div>
+        <div class="col-12">
+            Description : {{ animal.description }}
+        </div>
+        {% for spectacleAnimal in animal.spectacles %}
+            {% if spectacleAnimal.name is defined %}
+                Il joue dans le spectacle :
+                {{ spectacleAnimal.name }}
+                </br>
+            {% else %}
+                Il ne joue dans aucun spectacle
+            {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

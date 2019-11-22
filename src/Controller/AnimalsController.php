@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Animals;
 use App\Entity\AnimalsCategory;
+use App\Entity\Spectacle;
 use App\Form\AnimalsType;
 use App\Repository\AnimalsCategoryRepository;
 use App\Repository\AnimalsRepository;
+use App\Repository\SpectacleRepository;
 use App\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -105,5 +107,15 @@ class AnimalsController extends AbstractController
             $entityManager->flush();
         }
         return $this->redirectToRoute('admin_animals');
+    }
+
+    /**
+     *@Route("/show/{id}", name="show")
+     */
+    public function show(Animals $animals,SpectacleRepository $spectacle): Response
+    {
+        return $this->render('/animals/show.html.twig', [
+            'animal' => $animals,
+        ]);
     }
 }

@@ -3,7 +3,9 @@
 {% block body %}
     <div class="container mt-3">
     <h1>Les employer</h1>
-    <a href="{{ path('staff_new') }}"><button class="mt-3 btn btn-lg btn-block btn-light">Ajouter un nouveau employer</button></a>
+    <a href="{{ path('staff_new') }}">
+        <button class="mt-3 btn btn-lg btn-block btn-light">Ajouter un nouveau employer</button>
+    </a>
     <table class="table mt-5">
         <thead class="thead-light">
         <tr>
@@ -18,7 +20,12 @@
                 <th scope="row">{{ staff.name }}</th>
                 <td>{{ staff.description }}</td>
                 <td>{{ include('staff/_delete_form.html.twig') }}
-                    <a href="{{ path('staff_edit', {'id': staff.id}) }}"><button class="btn btn-light mt-2">Modifier</button></a></td>
+                    <a href="{{ path('staff_edit', {'id': staff.id}) }}">
+                        <button class="btn btn-light mt-2">Modifier</button>
+                    </a>
+                    <a href="{{ path('staff_show', {'id': staff.id}) }}">
+                        <button class="btn btn-light mt-2">Voir</button>
+                    </a></td>
             </tr>
         {% endfor %}
         </tbody>

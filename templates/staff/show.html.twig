@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <img src="{{ asset('/uploads/images/' ~ staff.image ) }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                Non de l'employer : {{ staff.name }}
+            </div>
+            <div class="col-12">
+                Description : {{ staff.description }}
+            </div>
+            <div class="col-12">
+                L'employer joue dans :
+                {% for spectacle in staff.spectacles %}
+                    {{ spectacle.name }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
