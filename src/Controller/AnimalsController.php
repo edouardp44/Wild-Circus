@@ -37,7 +37,7 @@ class AnimalsController extends AbstractController
      */
     public function showAnimalByCategory(AnimalsCategoryRepository $categoryRepository, AnimalsCategory $animalCategory)
     {
-        return $this->render('animals/showByCategory', [
+        return $this->render('animals/showByCategory.html.twig', [
             'categorysAnimals' => $categoryRepository->findByAnimals($animalCategory->getId()),
             'categorys' => $categoryRepository->findAll(),
         ]);

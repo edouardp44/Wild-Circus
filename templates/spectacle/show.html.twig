@@ -16,9 +16,15 @@
             {{ animalsSpectacle.name }}
         {% endfor %}
         </br>
-        <a href="{{ path('admin_spectacle') }}">
-            <button class="btn btn-light">Retour à la liste</button>
-        </a>
+        {% if is_granted('Role_Admin') %}
+            <a href="{{ path('admin_spectacle') }}">
+                <button class="btn btn-light">Retour à la liste</button>
+            </a>
+        {% else %}
+            <a href="{{ path('home') }}">
+                <button class="btn btn-light">Retour</button>
+            </a>
+        {% endif %}
     </div>
 {% endblock %}
 

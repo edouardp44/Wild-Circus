@@ -4,26 +4,29 @@
 
 {% block body %}
     <div class="container">
-    <h1>Nos annimaux</h1>
-        <ul class="nav justify-content-center">
+        <h1>Nos annimaux</h1>
+        <ul class="nav justify-content-center nav-tabs">
             {% for category in categorys %}
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ path('animals_category', {'id': category.id} ) }}">{{ category.name }}</a>
-            </li>
+                {% if category.animals is not empty %}
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           href="{{ path('animals_category', {'id': category.id} ) }}">{{ category.name }}</a>
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
-    {% for animal in animals %}
-        <div class="row mt-5">
-            <div class="media">
-                <img src="{{ animal.image}}" class="mr-3" alt="...">
-                <div class="media-body">
-                    <h5 class="mt-0">{{ animal.name }}</h5>
-                    {{ animal.description }}
+        {% for animal in animals %}
+            <div class="row mt-5">
+                <div class="media">
+                    <img src="{{ animal.image }}" class="mr-3" alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{ animal.name }}</h5>
+                        {{ animal.description }}
+                    </div>
                 </div>
             </div>
-        </div>
         {% else %}
-                <td colspan="6">no records found</td>
+            <td colspan="6">no records found</td>
         {% endfor %}
     </div>
 {% endblock %}

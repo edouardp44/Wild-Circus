@@ -5,11 +5,14 @@
 {% block body %}
     <div class="container">
     <h1>Tous nos Spectacle</h1>
-    <ul class="nav justify-content-center">
+    <ul class="nav justify-content-center nav-tabs">
         {% for category in categorys %}
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ path('spectacle_category', {'id': category.id} ) }}">{{ category.name }}</a>
-            </li>
+            {% if category.spectacles is not empty %}
+                <li class="nav-item">
+                    <a class="nav-link active"
+                       href="{{ path('spectacle_category', {'id': category.id} ) }}">{{ category.name }}</a>
+                </li>
+            {% endif %}
         {% endfor %}
     </ul>
     {% for spectacle in spectacles %}

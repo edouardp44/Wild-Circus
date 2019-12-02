@@ -110,7 +110,7 @@ class SpectacleController extends AbstractController
     public function show(Spectacle $spectacle): Response
     {
         return $this->render('spectacle/show.html.twig', [
-            'spectacle' => dump($spectacle),
+            'spectacle' => dump($spectacle) ,
         ]);
     }
 }

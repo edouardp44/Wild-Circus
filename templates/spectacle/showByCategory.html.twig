@@ -4,10 +4,12 @@
     <div class="container">
         <ul class="nav justify-content-center nav-tabs">
             {% for category in categorys %}
-                <li class="nav-item">
-                    <a class="nav-link active"
-                       href="{{ path('spectacle_category', {'id': category.id} ) }}">{{ category.name }}</a>
-                </li>
+                {% if category.spectacles is not empty %}
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           href="{{ path('spectacle_category', {'id': category.id} ) }}">{{ category.name }}</a>
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
         <h1 class="mt-5"> Tous nos animaux</h1>

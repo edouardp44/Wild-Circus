@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ spectacle.name }}</h5>
                             <p class="card-text">{{ spectacle.description }}</p>
-                            <a href="#" class="btn btn-primary">Voir la fiche du spectacle</a>
+                            <a href="{{ path('spectacle_show', {id : spectacle.id}) }}" class="btn btn-primary">Voir la fiche du spectacle</a>
                         </div>
                     </div>
                 </div>
