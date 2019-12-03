@@ -44,5 +44,13 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ path('staff_index') }}">L'équipe </a>
         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{{ path('cart_ticket') }}">Billeterie</a>
+        </li>
+         {% if app.user %}
+         <li class="nav-item">
+             <a class="nav-link" href="{{ path('cart_index') }}">Panier</a>
+         </li>
+         {% endif %}
     </ul>
 {% endif %}

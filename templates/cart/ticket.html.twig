@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Billeterie{% endblock %}
+
+{% block body %}
+    <h1>Billeterie</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Price</th>
+            <th>NbPlace</th>
+            <th>GroupComposition</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ticket in ticket %}
+            <tr>
+                <td>{{ ticket.price }}</td>
+                <td>{{ ticket.nbPlace }}</td>
+                <td>{{ ticket.groupComposition }}</td>
+                <td>
+                    <a href="{{ path('cart_add',{'id': ticket.id}) }}">Ajouté</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
