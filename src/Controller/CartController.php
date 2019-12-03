@@ -26,7 +26,7 @@ class CartController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index()
+    public function index(): Response
     {
         return $this->render('cart/index.html.twig', [
             'items' => $this->cartManager->getFullCart(),
@@ -71,7 +71,7 @@ class CartController extends AbstractController
     /**
      * @Route("/remove/{id}", name="remove")
      */
-    public function remove($id)
+    public function remove($id): RedirectResponse
     {
         $this->cartManager->remove($id);
         return $this->redirectToRoute('cart_index');
