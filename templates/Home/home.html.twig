@@ -10,7 +10,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ spectacle.name }}</h5>
                             <p class="card-text">{{ spectacle.description }}</p>
-                            <a href="{{ path('spectacle_show', {id : spectacle.id}) }}" class="btn btn-primary">Voir la fiche du spectacle</a>
+                            <a href="{{ path('spectacle_show', {id : spectacle.id}) }}" class="btn btn-primary">Voir la
+                                fiche du spectacle</a>
                         </div>
                     </div>
                 </div>
@@ -34,27 +35,20 @@
         {% endfor %}
         <h1> Billeterie</h1>
         <table class="table">
-            <tr>
-                <td></td>
-                <td>Adults</td>
-                <td>Enfants de moin de 12ans</td>
-                <td>Groups</td>
-                <td>Ecoles</td>
-            </tr>
-            <tr>
-                <td>Semaines</td>
-                <td>16€</td>
-                <td>8€</td>
-                <td>130€</td>
-                <td>220€</td>
-            </tr>
-            <tr>
-                <td> Week-end</td>
-                <td> 18€</td>
-                <td>10€</td>
-                <td>150€</td>
-                <td>280€</td>
-            </tr>
+                <thead>
+                <tr>
+                    <th scope="col">Composition</th>
+                    <th scope="col">Price</th>
+                </tr>
+                </thead>
+            {% for ticket in ticketing %}
+                <tbody>
+                <tr>
+                    <th scope="row">{{ ticket.groupComposition }}</th>
+                    <td scope="row">{{ ticket.price }}</td>
+                </tr>
+                </tbody>
+            {% endfor %}
         </table>
         <a href="">
             <button class="btn btn-lg btn-light">Nous contacter</button>

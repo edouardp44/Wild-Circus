@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Message;
+use App\Entity\Ticketing;
 use App\Form\MessageType;
 use App\Repository\AnimalsRepository;
 use App\Repository\SpectacleRepository;
+use App\Repository\TicketingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +18,15 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function showLast(SpectacleRepository $spectacleRepository,  AnimalsRepository $animalsRepository): Response
+    public function showLast(
+        SpectacleRepository $spectacleRepository,
+        AnimalsRepository $animalsRepository,
+        TicketingRepository $ticketingRepository): Response
     {
         return $this->render('Home/home.html.twig', [
             'spectacles' => $spectacleRepository->findByThreeLast(),
             'animals' => $animalsRepository->findByThreeLast(),
+            'ticketing' => $ticketingRepository->findAll(),
         ]);
     }
 

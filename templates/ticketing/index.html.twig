@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticketing index{% endblock %}
+
+{% block body %}
+    <h1>Billeterie</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>NbPlace</th>
+                <th>GroupComposition</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticketing in ticketings %}
+            <tr>
+                <td>{{ ticketing.price }}</td>
+                <td>{{ ticketing.nbPlace }}</td>
+                <td>{{ ticketing.groupComposition }}</td>
+                <td>
+                    <a href="{{ path('ticketing_edit', {'id': ticketing.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ticketing_new') }}">Create new</a>
+{% endblock %}

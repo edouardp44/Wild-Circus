@@ -6,51 +6,7 @@
     {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
 </head>
 <body>
-{% if is_granted('ROLE_ADMIN') %}
-    <ul class="nav justify-content-start">
-        <li class="nav-item mr-3"> Wild Circus !!</li>
-        {% if app.user %}
-            <a href="{{ path('app_logout') }}"> Se déconnecter</a>
-        {% else %}
-            <a href="{{ path('app_login') }}"> Se connecter</a>
-        {% endif %}
-    </ul>
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('admin_animals') }}">Nos animaux</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_spectacle') }}">Tous les spectacles</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_staff') }}">L'équipe </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('categoryAnimal_index') }}">Catégories d'annimaux</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('categorySpectacle_index') }}">Catégories de spectacle</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_messages') }}">Messages</a>
-        </li>
-    </ul>
-{% else %}
-    <ul class="nav justify-content-start">
-        <li class="nav-item"> Wild Circus !!</li>
-    </ul>
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('animals_index') }}">Nos animaux</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('spectacle_index') }}">Tous les spectacles</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('staff_index') }}">L'équipe </a>
-        </li>
-    </ul>
-{% endif %}
+{{ include('nav.html.twig') }}
 <div class="container">
     {% block body %}
         {% for category, messages in app.flashes %}

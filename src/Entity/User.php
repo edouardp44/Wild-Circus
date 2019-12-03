@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -44,6 +46,16 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="users")
      */
     private $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticketing", mappedBy="user")
+     */
+    private $ticketings;
+
+    public function __construct()
+    {
+        $this->ticketings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -146,4 +158,36 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Ticketing[]
+     */
+    public function getTicketings(): Collection
+    {
+        return $this->ticketings;
+    }
+
+    public function addTicketing(Ticketing $ticketing): self
+    {
+        if (!$this->ticketings->contains($ticketing)) {
+            $this->ticketings[] = $ticketing;
+            $ticketing->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicketing(Ticketing $ticketing): self
+    {
+        if ($this->ticketings->contains($ticketing)) {
+            $this->ticketings->removeElement($ticketing);
+            // set the owning side to null (unless already changed)
+            if ($ticketing->getUser() === $this) {
+                $ticketing->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 }
+
