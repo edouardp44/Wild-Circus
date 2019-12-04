@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,17 @@ class Ticketing
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ticketings")
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderLink", mappedBy="ticket")
+     */
+    private $orderLinks;
+
+    public function __construct()
+    {
+        $this->ordersLine = new ArrayCollection();
+        $this->orderLinks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,6 +98,37 @@ class Ticketing
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OrderLink[]
+     */
+    public function getOrderLinks(): Collection
+    {
+        return $this->orderLinks;
+    }
+
+    public function addOrderLink(OrderLink $orderLink): self
+    {
+        if (!$this->orderLinks->contains($orderLink)) {
+            $this->orderLinks[] = $orderLink;
+            $orderLink->setTicket($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderLink(OrderLink $orderLink): self
+    {
+        if ($this->orderLinks->contains($orderLink)) {
+            $this->orderLinks->removeElement($orderLink);
+            // set the owning side to null (unless already changed)
+            if ($orderLink->getTicket() === $this) {
+                $orderLink->setTicket(null);
+            }
+        }
 
         return $this;
     }

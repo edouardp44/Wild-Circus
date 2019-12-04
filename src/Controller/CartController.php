@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Repository\TicketingRepository;
 use App\Service\Cart\CartManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
