@@ -13,7 +13,7 @@
                 <th scope="col">Quantité</th>
                 <th scope="col">Total</th>
                 <th scope="col"></th>
-            </tr>
+            </tr><i class="fas fa-trash"></i>
             </thead>
             <tbody>
             {% for item in items %}
@@ -24,7 +24,8 @@
                     <td>{{ item.ticket.price * item.quantity }}</td>
                     <td><a href="{{ path('cart_remove', { 'id' : item.ticket.id }) }}" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash"></i>
-                        </a></td>
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -36,7 +37,7 @@
             </tr>
             </tfoot>
         </table>
-        <a href="{{ path('order_add') }}">
+        <a href="{{ path('order_show') }}">
             <button class="btn btn-light">Payer</button>
         </a>
     {% else %}

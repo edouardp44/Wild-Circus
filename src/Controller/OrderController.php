@@ -26,6 +26,6 @@ class OrderController extends AbstractController
     public function addTheOrder(): Response
     {
         $this->order->addToOrder($this->getUser());
-        return $this->redirectToRoute("home");
+        return $this->redirectToRoute('order_show');
     }
 }

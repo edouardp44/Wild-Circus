@@ -2,19 +2,24 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\UserType;
-use App\Repository\UserRepository;
+use App\Repository\OrderLinkRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 
 /**
  * @Route("/user")
  */
 class UserController extends AbstractController
 {
+    /**
+     * @Route("/order/show", name="order_show")
+     */
+    public function showAllOrder(OrderLinkRepository $linkRepository): Response
+    {
+        return $this->render('pdf/showAllOrder.html.twig', [
+            'user' => $linkRepository->findBy(['user' => $this->getUser()])
+        ]);
+    }
 
 }
