@@ -46,7 +46,7 @@ class CartManager
         foreach ($cart as $id => $quantity) {
             $cartWithData[] = [
                 'ticket' => $this->ticketingRepository->find($id),
-                'quantity' => $quantity
+                'quantity' => $quantity,
             ];
         }
         return $cartWithData;
@@ -59,7 +59,5 @@ class CartManager
             $total += $item['ticket']->getPrice() * $item['quantity'];
         }
         return $total;
-
     }
-
 }

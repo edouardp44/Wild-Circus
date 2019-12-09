@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wild Circus{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('pdf') }}
+    {% endblock %}
+    {% block javascript %}
+        {{ encore_entry_script_tags('pdf') }}
+    {% endblock %}
+</head>
+<div class="container">
+    <div class="row">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="row">
+        <p> Commandé par {{ order.user.name }}</p>
+        <p> Vivant en {{ order.user.country.region }}</p>
+        <p> a commandé {{ order.quantity }} place pour {{ order.ticket.groupComposition }}</p>
+    <div class="row">
+        <h2>Description des achats</h2>
+        <p>Prix unitaire de la place : {{ order.price }}</p>
+        <br/>
+        <p>Total : {{ order.priceTotal }}</p>
+    </div>
+</div>

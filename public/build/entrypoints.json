@@ -3,11 +3,21 @@
     "app": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors~app.js",
+        "/build/vendors~app~pdf.js",
         "/build/app.js"
       ],
       "css": [
         "/build/app.css"
+      ]
+    },
+    "pdf": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors~app~pdf.js",
+        "/build/pdf.js"
+      ],
+      "css": [
+        "/build/pdf.css"
       ]
     }
   }

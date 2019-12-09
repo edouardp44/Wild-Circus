@@ -32,6 +32,11 @@ class OrderLink
     private $quantity;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createAt;
@@ -104,5 +109,21 @@ class OrderLink
         $this->priceTotal = $priceTotal;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price): void
+    {
+        $this->price = $price;
     }
 }
