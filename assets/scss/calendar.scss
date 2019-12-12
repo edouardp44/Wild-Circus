@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Muli:400,900&display=swap");
+@import "~bootstrap";
+
+#calendar-holder {
+  font-family: "Muli", sans-serif;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.fc-toolbar h2 {
+  color: #916319;
+}
+.fc th {
+  font-weight: inherit;
+}
+.fc tr {
+  color: #AA3333;
+}
+.fc-event {
+  height: 60px;
+  background-color: green !important ;
+  border-color: #FFFFFF;
+}

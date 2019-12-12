@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('show_tour_new') }}"><button class="btn btn-outline-dark btn-lg ml-3">Ajouter une date</button></a>
+    <div class="mt-4"
+            id="calendar-holder"
+            data-events-url="{{ path('fc_load_events') }}"
+    ></div>
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('calendar') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('calendar') }}
+{% endblock %}

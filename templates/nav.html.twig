@@ -1,13 +1,19 @@
-<ul class="nav justify-content-start">
-    <li class="nav-item mr-3"> Wild Circus !!</li>
+<ul class="nav justify-content-center">
+    <li class="nav-item ml-5 mt-2">
+        Wild Cirucus
+    </li>
+    <li class="nav-item mr-3">
     {% if app.user %}
-        <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+        <a class="nav-link active" href="{{ path('app_logout') }}"> Se déconnecter</a>
     {% else %}
-        <a href="{{ path('app_login') }}"> Se connecter</a>
+        <a class="nav-link active" href="{{ path('app_login') }}"> Se connecter</a>
     {% endif %}
-</ul>
+    </li>
 {% if is_granted('ROLE_ADMIN') %}
     <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('show_tour_calendar') }}">Calendrier</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link active" href="{{ path('admin_animals') }}">Nos animaux</a>
         </li>
@@ -48,12 +54,13 @@
             <a class="nav-link" href="{{ path('cart_ticket') }}">Billeterie</a>
         </li>
          {% if app.user %}
-         <li class="nav-item">
-             <a class="nav-link" href="{{ path('cart_index') }}">Panier</a>
-         </li>
+            <li class="nav-item">
+                 <a class="nav-link" href="{{ path('cart_index') }}">Panier</a>
+            </li>
              <li class="nav-item">
                  <a class="nav-link" href="{{ path('order_show') }}">Mes commandes</a>
              </li>
          {% endif %}
     </ul>
 {% endif %}
+</ul>

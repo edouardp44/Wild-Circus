@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Message;
-use App\Entity\Ticketing;
 use App\Form\MessageType;
 use App\Repository\AnimalsRepository;
 use App\Repository\SpectacleRepository;
