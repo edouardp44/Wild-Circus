@@ -17,6 +17,12 @@ class CartManager
         $this->ticketingRepository = $ticketingRepository;
     }
 
+    public function addShow($tour)
+    {
+        $show = $this->session->get('show', $tour);
+        $this->session->set('show', $tour);
+    }
+
     public function add(int $id)
     {
         $cart = $this->session->get('cart', []);
@@ -36,7 +42,11 @@ class CartManager
         }
         $this->session->set('cart', $cart);
     }
-
+    public function getCartWithShow()
+    {
+        $tour = $this->session->get('show');
+        return $tour;
+    }
     public function getFullCart(): array
     {
         $cart = $this->session->get('cart', []);

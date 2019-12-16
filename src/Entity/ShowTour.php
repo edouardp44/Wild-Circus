@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,16 @@ class ShowTour
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="showTours")
      */
     private $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderLink", mappedBy="showTour")
+     */
+    private $orderLinks;
+
+    public function __construct()
+    {
+        $this->orderLinks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,6 +114,37 @@ class ShowTour
     public function setCountry(?Country $country): self
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OrderLink[]
+     */
+    public function getOrderLinks(): Collection
+    {
+        return $this->orderLinks;
+    }
+
+    public function addOrderLink(OrderLink $orderLink): self
+    {
+        if (!$this->orderLinks->contains($orderLink)) {
+            $this->orderLinks[] = $orderLink;
+            $orderLink->setShowTour($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderLink(OrderLink $orderLink): self
+    {
+        if ($this->orderLinks->contains($orderLink)) {
+            $this->orderLinks->removeElement($orderLink);
+            // set the owning side to null (unless already changed)
+            if ($orderLink->getShowTour() === $this) {
+                $orderLink->setShowTour(null);
+            }
+        }
 
         return $this;
     }

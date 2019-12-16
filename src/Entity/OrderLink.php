@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +47,16 @@ class OrderLink
      * @ORM\Column(type="integer")
      */
     private $priceTotal;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ShowTour", inversedBy="orderLinks")
+     */
+    private $showTour;
+
+    public function __construct()
+    {
+        $this->showTour = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -126,4 +138,17 @@ class OrderLink
     {
         $this->price = $price;
     }
+
+    public function getShowTour(): ?ShowTour
+    {
+        return $this->showTour;
+    }
+
+    public function setShowTour(?ShowTour $showTour): self
+    {
+        $this->showTour = $showTour;
+
+        return $this;
+    }
+
 }

@@ -43,11 +43,6 @@ class User implements UserInterface
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstName;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="users")
      */
     private $country;
@@ -232,22 +227,6 @@ class User implements UserInterface
         }
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * @param mixed $firstname
-     */
-    public function setFirstName($firstName): void
-    {
-        $this->firstname = $firstName;
     }
 }
 

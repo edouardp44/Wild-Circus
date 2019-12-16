@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\ShowTour;
+use App\Repository\ShowTourRepository;
 use App\Repository\TicketingRepository;
 use App\Service\Cart\CartManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,7 +31,8 @@ class CartController extends AbstractController
     {
         return $this->render('cart/index.html.twig', [
             'items' => $this->cartManager->getFullCart(),
-            'total' => $this->cartManager->getTotal()
+            'total' => $this->cartManager->getTotal(),
+            'showTour' => $this->cartManager->getCartWithShow()
         ]);
     }
 
@@ -42,6 +45,14 @@ class CartController extends AbstractController
         return $this->redirectToRoute("cart_ticket");
     }
 
+    /**
+     * @Route("/show/add/{id}", name="show_add")
+     */
+    public function addShow(ShowTour $showTour):RedirectResponse
+    {
+        $this->cartManager->addShow($showTour);
+        return $this->redirectToRoute('cart_show_tours');
+    }
     /**
      * @Route("/add/{id}", name="add")
      */
@@ -65,6 +76,16 @@ class CartController extends AbstractController
             'ticket' => $ticketingRepository->findAll(),
         ]);
 
+    }
+
+    /**
+     * @Route("/show/tours", name="show_tours")
+     */
+    public function showTourslisting(ShowTourRepository $showTourRepository): Response
+    {
+        return $this->render('cart/showTours.html.twig', [
+            'showTours' => $showTourRepository->findDateByBeginAt(),
+        ]);
     }
 
     /**

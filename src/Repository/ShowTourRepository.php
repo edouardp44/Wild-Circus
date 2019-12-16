@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\ShowTour;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
  * @method ShowTour|null find($id, $lockMode = null, $lockVersion = null)
@@ -28,5 +29,29 @@ class ShowTourRepository extends ServiceEntityRepository
         ;
         $query = $qb->getQuery();
         return $query->execute();
+    }
+
+    public function findDateByBeginAt()
+    {
+        // la table en base de données correspondant à l'entité liée au repository en cours
+        $table = $this->getClassMetadata()->table["name"];
+
+        $sql = "SELECT * FROM show_tour 
+                WHERE begin_at > DATE_ADD(NOW(), INTERVAL -30 DAY) 
+                ORDER BY begin_at ASC";
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addEntityResult(ShowTour::class, 'showTour');
+
+        // On mappe le nom de chaque colonne en base de données sur les attributs de nos entités
+        foreach ($this->getClassMetadata()->fieldMappings as $obj) {
+            $rsm->addFieldResult("showTour", $obj["columnName"], $obj["fieldName"]);
+        }
+
+        $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+
+
+        $stmt->execute();
+
+        return $stmt->getResult();
     }
 }

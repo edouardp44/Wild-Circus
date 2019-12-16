@@ -25,9 +25,6 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('name', TextType::class, [
                 'label' => 'Nom'
-            ])
-            ->add('firstName', TextType::class, [
-                'label' => 'Prénom'
             ]);
         $builder->add('password', RepeatedType::class, [
             'type' => PasswordType::class,
@@ -54,7 +51,7 @@ class RegistrationFormType extends AbstractType
                 'class' => Country::class,
                 'choice_label' => 'region',
                 'data_class' => null,
-                'expanded' => true
+                'expanded' => false
             ]);
     }
 
