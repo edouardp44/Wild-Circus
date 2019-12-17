@@ -21,7 +21,6 @@ class OrderManager
         $this->cart = $cartManager;
         $this->entityManager = $entityManager;
         $this->session = $session;
-
     }
 
     public function addToOrder($user)
@@ -34,7 +33,8 @@ class OrderManager
             $order->setPriceTotal($this->cart->getTotal());
             $order->setCreateAt(new \DateTime('now'));
             $order->setTicket($key['ticket']);
-            $this->entityManager->persist($order);
+            $order->setShowTour($key['show']);
+            $this->entityManager->merge($order);
         }
         $this->entityManager->flush();
         $this->session->clear();

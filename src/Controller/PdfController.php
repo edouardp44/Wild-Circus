@@ -17,11 +17,10 @@ class PdfController extends AbstractController
      */
     public function generatePdf(Pdf $pdf, OrderLink $orderLink): Response
     {
-        $html = $this->renderView('pdf/ticket.html.twig',
-            array(
+        $html = $this->renderView('pdf/ticket.html.twig',[
                 'title' => 'Wild Circus',
                 'order' => $orderLink
-            ));
+            ]);
 
         return new PdfResponse($pdf->getOutputFromHtml($html), 'Billet.pdf');
     }

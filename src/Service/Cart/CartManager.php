@@ -57,6 +57,7 @@ class CartManager
             $cartWithData[] = [
                 'ticket' => $this->ticketingRepository->find($id),
                 'quantity' => $quantity,
+                'show' => $this->getCartWithShow()
             ];
         }
         return $cartWithData;

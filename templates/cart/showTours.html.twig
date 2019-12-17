@@ -10,11 +10,15 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">Adresse : {{ showTour.location }}</h5>
-                <p class="card-text">Du {{ showTour.beginAt|date('d/m/Y')}} au {{ showTour.endAt|date('d/m/Y') }}</p>
-                <a href="{{ path('cart_show_add', { 'id': showTour.id } ) }}" class="btn btn-outline-warning">Choisir cette date</a>
+                <p class="card-text">Du {{ showTour.beginAt|date('d/m/Y') }} au {{ showTour.endAt|date('d/m/Y') }}</p>
+                <a href="{{ path('cart_show_add', { 'id': showTour.id } ) }}" class="btn btn-outline-warning">Choisir
+                    cette date</a>
             </div>
         </div>
     {% endfor %}
+    <a href="{{ path('cart_index') }}">
+        <button class="btn btn-outline-success btn-lg mt-3">Valider</button>
+    </a>
 {% endblock %}
 
 {% block title %}

@@ -7,8 +7,8 @@
         {{ encore_entry_link_tags('pdf') }}
     {% endblock %}
     {% block javascript %}
-        {{ encore_entry_script_tags('pdf') }}
-    {% endblock %}
+    {{ encore_entry_script_tags('pdf') }}
+{% endblock %}
 </head>
 <div class="container">
     <div class="row">
@@ -18,6 +18,14 @@
         <p> Commandé par {{ order.user.name }}</p>
         <p> Vivant en {{ order.user.country.region }}</p>
         <p> a commandé {{ order.quantity }} place pour {{ order.ticket.groupComposition }}</p>
+    </div>
+    <div class="row">
+        <h2>Adresse</h2>
+        <p>{{ order.showTour.getCity }}</p>
+        <p>{{ order.showTour.location }}</p>
+        <p>Commence le {{ order.showTour.beginAt|date('d/m/Y') }} et finis
+            le {{ order.showTour.endAt|date('d/m/Y') }}</p>
+    </div>
     <div class="row">
         <h2>Description des achats</h2>
         <p>Prix unitaire de la place : {{ order.price }}</p>
