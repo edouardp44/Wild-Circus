@@ -4,10 +4,12 @@ import { Calendar } from "@fullcalendar/core";
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import frLocale from '@fullcalendar/core/locales/fr';
 
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
+
 
 document.addEventListener("DOMContentLoaded", () => {
     var calendarEl = document.getElementById("calendar-holder");
@@ -16,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var calendar = new Calendar(calendarEl, {
         defaultView: "dayGridMonth",
         editable: true,
+        locale: frLocale,
         eventSources: [
             {
                 url: eventsUrl,

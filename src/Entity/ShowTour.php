@@ -44,7 +44,7 @@ class ShowTour
     private $country;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OrderLink", mappedBy="showTour")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderLink", mappedBy="showTour", cascade={"remove"})
      */
     private $orderLinks;
 

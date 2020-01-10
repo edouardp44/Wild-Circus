@@ -33,7 +33,6 @@ class ShowTourRepository extends ServiceEntityRepository
 
     public function findDateByBeginAt()
     {
-        // la table en base de données correspondant à l'entité liée au repository en cours
         $table = $this->getClassMetadata()->table["name"];
 
         $sql = "SELECT * FROM show_tour 

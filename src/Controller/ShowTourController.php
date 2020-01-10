@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\ShowTour;
 use App\Form\ShowTourType;
 use App\Repository\ShowTourRepository;
+use App\Repository\UserRepository;
+use App\Service\Mailer\MailNotification;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +18,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ShowTourController extends AbstractController
 {
+    private $mailer;
+
+    public function __construct(MailNotification $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+
     /**
      * @Route("/", name="index", methods={"GET"})
      */
@@ -40,7 +49,7 @@ class ShowTourController extends AbstractController
      * @Route("/new", name="new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserRepository $user): Response
     {
         $showTour = new ShowTour();
         $form = $this->createForm(ShowTourType::class, $showTour);
@@ -50,14 +59,12 @@ class ShowTourController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($showTour);
             $entityManager->flush();
-
-            return $this->redirectToRoute('show_tour_index');
+            $this->mailer->sendMailByUserData($user, $form);
+            return $this->redirectToRoute('show_tour_calendar');
         }
 
-        return $this->render('show_tour/new.html.twig', [
-            'show_tour' => $showTour,
-            'form' => $form->createView(),
-        ]);
+        return $this->render('show_tour/new.html.twig', ['show_tour' => $showTour,
+            'form' => $form->createView(),]);
     }
 
     /**
@@ -83,7 +90,7 @@ class ShowTourController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('show_tour_index');
+            return $this->redirectToRoute('show_tour_calendar');
         }
 
         return $this->render('show_tour/edit.html.twig', [
@@ -104,6 +111,6 @@ class ShowTourController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('show_tour_index');
+        return $this->redirectToRoute('show_tour_calendar');
     }
 }
