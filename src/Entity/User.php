@@ -57,6 +57,12 @@ class User implements UserInterface
      */
     private $orderLinks;
 
+    /**
+     * the token which will be used when forgetting a password
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resetToken;
+
 
     public function __construct()
     {
@@ -227,6 +233,22 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResetToken(): string
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * @param mixed $resetToken
+     */
+    public function setResetToken(?string $resetToken): void
+    {
+        $this->resetToken = $resetToken;
     }
 }
 

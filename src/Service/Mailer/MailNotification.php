@@ -52,4 +52,14 @@ class MailNotification
 
     }
 
+    public function resetPassword($user, $url)
+    {
+        $message = (new \Swift_Message('Mot de passe'))
+            ->setFrom('edouard.p44@gmail.com')
+            ->setTo($user->getEmail())
+            ->setBody('Cliquer ici pour reseter votre mot de passe : ' . $url, 'Text/html');
+
+        $this->mailer->send($message);
+    }
+
 }
