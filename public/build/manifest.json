@@ -25,5 +25,7 @@
   "build/fonts/fa-solid-900.eot": "/build/fonts/fa-solid-900.8e4a6dcc.eot",
   "build/images/fa-brands-400.svg": "/build/images/fa-brands-400.a9c4bb73.svg",
   "build/images/fa-regular-400.svg": "/build/images/fa-regular-400.7b9568e6.svg",
-  "build/images/fa-solid-900.svg": "/build/images/fa-solid-900.c2801fb4.svg"
+  "build/images/fa-solid-900.svg": "/build/images/fa-solid-900.c2801fb4.svg",
+  "build/vendors~app~calendar.css": "/build/vendors~app~calendar.css",
+  "build/vendors~app~calendar.js": "/build/vendors~app~calendar.js"
 }

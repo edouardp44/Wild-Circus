@@ -4,11 +4,11 @@
       "js": [
         "/build/runtime.js",
         "/build/vendors~app~pdf.js",
-        "/build/vendors~app.js",
+        "/build/vendors~app~calendar.js",
         "/build/app.js"
       ],
       "css": [
-        "/build/vendors~app.css",
+        "/build/vendors~app~calendar.css",
         "/build/app.css"
       ]
     },
@@ -25,10 +25,12 @@
     "calendar": {
       "js": [
         "/build/runtime.js",
+        "/build/vendors~app~calendar.js",
         "/build/vendors~calendar.js",
         "/build/calendar.js"
       ],
       "css": [
+        "/build/vendors~app~calendar.css",
         "/build/vendors~calendar.css",
         "/build/calendar.css"
       ]

@@ -1,4 +1,4 @@
-<ul class="nav justify-content-center">
+<ul class="nav globalNav">
     <li class="nav-item ml-5 mt-2">
         Wild Cirucus
     </li>
@@ -10,24 +10,23 @@
     {% endif %}
     </li>
 {% if is_granted('ROLE_ADMIN') %}
-    <ul class="nav justify-content-end">
         <li class="nav-item">
-            <a class="nav-link active" href="{{ path('show_tour_calendar') }}">Calendrier</a>
+            <a class="nav-link" href="{{ path('show_tour_calendar') }}">Calendrier</a>
         </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Les catégories</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{ path('categorySpectacle_index') }}">Catégories de spectacle</a>
+            <a class="dropdown-item" href="{{ path('categoryAnimal_index') }}">Catégories d'annimaux</a>
+        </div>
         <li class="nav-item">
-            <a class="nav-link active" href="{{ path('admin_animals') }}">Nos animaux</a>
+            <a class="nav-link" href="{{ path('admin_animals') }}">Nos animaux</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ path('admin_spectacle') }}">Tous les spectacles</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ path('admin_staff') }}">L'équipe </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('categoryAnimal_index') }}">Catégories d'annimaux</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('categorySpectacle_index') }}">Catégories de spectacle</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ path('admin_messages') }}">Messages</a>
@@ -37,7 +36,6 @@
         </li>
     </ul>
 {% else %}
-     <ul class="nav justify-content-end">
         <li class="nav-item">
             <a class="nav-link active" href="{{ path('home') }}">Accueil</a>
         </li>
@@ -61,6 +59,7 @@
                  <a class="nav-link" href="{{ path('order_show') }}">Mes commandes</a>
              </li>
          {% endif %}
-    </ul>
 {% endif %}
 </ul>
+
+{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}

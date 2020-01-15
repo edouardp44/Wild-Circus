@@ -3,4 +3,28 @@
 
 a {
   text-decoration: none !important;
+  color: #C10000;
 }
+
+a:hover {
+  color: darkred;
+}
+
+.globalNav{
+  background-color: #C10000;
+  color: white;
+}
+
+.nav-link {
+  text-decoration: none !important;
+  color: #FFFFFF;
+  text-decoration-color: #FFFFFF;
+}
+.nav-link:hover {
+  color:  wheat;
+}
+
+h1 {
+  color: #C10000;
+}
+
