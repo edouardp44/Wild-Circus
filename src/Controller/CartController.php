@@ -6,6 +6,7 @@ use App\Entity\ShowTour;
 use App\Repository\ShowTourRepository;
 use App\Repository\TicketingRepository;
 use App\Service\Cart\CartManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,7 +55,8 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_show_tours');
     }
     /**
-     * @Route("/add/{id}", name="add", options = { "expose" = true })
+     * @Route("/add/{id}", name="add")
+     * @IsGranted("ROLE_USER")
      */
     public function addToCart($id): RedirectResponse
     {
@@ -65,6 +67,18 @@ class CartController extends AbstractController
             $this->addFlash('danger', 'Vous devez vous connecter pour acheter un billet');
         }
         return $this->redirectToRoute("cart_ticket");
+    }
+
+    /**
+     * @param $id
+     * @return RedirectResponse
+     * @Route("/delete/{id}", name = "delete")
+     */
+    public function deleteOne($id): RedirectResponse
+    {
+        $this->cartManager->delete($id);
+        return $this->redirectToRoute('cart_index');
+
     }
 
     /**

@@ -20,7 +20,11 @@
                 <tr>
                     <th scope="row">{{ item.ticket.groupComposition }}</th>
                     <td>{{ item.ticket.price }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td><a href="{{ path('cart_add', {'id': item.ticket.id}) }}"><i
+                                    class="fas fa-plus-circle"></i></a>
+                        {{ item.quantity }}
+                        <a href="{{ path('cart_delete', {'id': item.ticket.id}) }}"><i class="fas fa-minus-circle">
+                            </i></a></td>
                     <td>{{ item.ticket.price * item.quantity }}</td>
                     <td><a href="{{ path('cart_remove', { 'id' : item.ticket.id }) }}" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash"></i>
@@ -43,7 +47,7 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">Adresse : {{ showTour.location }}</h5>
-                <p class="card-text">Du {{ showTour.beginAt|date('d/m/Y')}} au {{ showTour.endAt|date('d/m/Y') }}</p>
+                <p class="card-text">Du {{ showTour.beginAt|date('d/m/Y') }} au {{ showTour.endAt|date('d/m/Y') }}</p>
             </div>
         </div>
         <a href="{{ path('order_add') }}">

@@ -23,6 +23,18 @@ class CartManager
         $this->session->set('show', $tour);
     }
 
+    public function delete(int $id)
+    {
+        $cart = $this->session->get('cart', []);
+
+        if (!empty($cart[$id] and $cart[$id] > 1)) {
+            $cart[$id]--;
+        } else {
+            unset($cart[$id]);
+        }
+        $this->session->set('cart', $cart);
+    }
+
     public function add(int $id)
     {
         $cart = $this->session->get('cart', []);
@@ -50,7 +62,6 @@ class CartManager
     public function getFullCart(): array
     {
         $cart = $this->session->get('cart', []);
-
         $cartWithData = [];
 
         foreach ($cart as $id => $quantity) {
