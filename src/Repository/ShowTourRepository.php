@@ -36,7 +36,8 @@ class ShowTourRepository extends ServiceEntityRepository
         $table = $this->getClassMetadata()->table["name"];
 
         $sql = "SELECT * FROM show_tour 
-                WHERE begin_at > DATE_ADD(NOW(), INTERVAL -30 DAY) 
+                WHERE begin_at < DATE(NOW() + INTERVAL 30 DAY) 
+                AND end_at > DATE(NOW() - INTERVAL 30 DAY)
                 ORDER BY begin_at ASC";
         $rsm = new ResultSetMappingBuilder($this->getEntityManager());
         $rsm->addEntityResult(ShowTour::class, 'showTour');

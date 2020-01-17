@@ -49,24 +49,25 @@ class CartController extends AbstractController
     /**
      * @Route("/show/add/{id}", name="show_add")
      */
-    public function addShow(ShowTour $showTour):RedirectResponse
+    public function addShow(ShowTour $showTour): RedirectResponse
     {
         $this->cartManager->addShow($showTour);
-        return $this->redirectToRoute('cart_show_tours');
+        return $this->redirectToRoute('cart_ticket');
     }
+
     /**
      * @Route("/add/{id}", name="add")
      * @IsGranted("ROLE_USER")
      */
-    public function addToCart($id): RedirectResponse
+    public function addTicket($id): RedirectResponse
     {
         if ($this->isGranted('ROLE_USER')) {
             $this->cartManager->add($id);
-            $this->addFlash('success',"Ca a bien été ajoutez à votre panier");
+            $this->addFlash('success', "Ca a bien été ajoutez à votre panier");
         } else {
             $this->addFlash('danger', 'Vous devez vous connecter pour acheter un billet');
         }
-        return $this->redirectToRoute("cart_ticket");
+        return $this->redirectToRoute('cart_index');
     }
 
     /**
@@ -84,23 +85,15 @@ class CartController extends AbstractController
     /**
      * @Route("/ticket", name="ticket")
      */
-    public function ticketingList(TicketingRepository $ticketingRepository): Response
+    public function ticketingList(TicketingRepository $ticketingRepository, ShowTourRepository $showTourRepository)
     {
         return $this->render('/cart/ticket.html.twig', [
             'ticket' => $ticketingRepository->findAll(),
             'item' => $this->cartManager->getFullCart(),
-        ]);
-
-    }
-
-    /**
-     * @Route("/show/tours", name="show_tours")
-     */
-    public function showTourslisting(ShowTourRepository $showTourRepository): Response
-    {
-        return $this->render('cart/showTours.html.twig', [
             'showTours' => $showTourRepository->findDateByBeginAt(),
+
         ]);
+
     }
 
     /**

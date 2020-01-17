@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Message;
 use App\Form\MessageType;
 use App\Repository\AnimalsRepository;
+use App\Repository\ShowTourRepository;
 use App\Repository\SpectacleRepository;
 use App\Repository\TicketingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,12 +21,15 @@ class HomeController extends AbstractController
     public function showLast(
         SpectacleRepository $spectacleRepository,
         AnimalsRepository $animalsRepository,
-        TicketingRepository $ticketingRepository): Response
+        TicketingRepository $ticketingRepository,
+        ShowTourRepository $showTourRepository
+    ): Response
     {
         return $this->render('Home/home.html.twig', [
             'spectacles' => $spectacleRepository->findByThreeLast(),
             'animals' => $animalsRepository->findByThreeLast(),
             'ticketing' => $ticketingRepository->findAll(),
+            'showTours' => $showTourRepository->findDateByBeginAt()
         ]);
     }
 

@@ -15,12 +15,12 @@
                 <th scope="col"></th>
             </tr>
             </thead>
-            <tbody id="hello">
+            <tbody>
             {% for item in items %}
                 <tr>
                     <th scope="row">{{ item.ticket.groupComposition }}</th>
                     <td>{{ item.ticket.price }}</td>
-                    <td><a href="{{ path('cart_add', {'id': item.ticket.id}) }}"><i
+                    <td><a href="{{ path('cart_add', {'id': item.ticket.id}) }}" class="hello"><i
                                     class="fas fa-plus-circle"></i></a>
                         {{ item.quantity }}
                         <a href="{{ path('cart_delete', {'id': item.ticket.id}) }}"><i class="fas fa-minus-circle">
@@ -41,18 +41,23 @@
             </tr>
             </tfoot>
         </table>
-        <div class="card mt-4">
-            <div class="card-header">
-                <h4>{{ showTour.city }}</h4>
+        {% if showTour is not empty %}
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h4>{{ showTour.city }}</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Adresse : {{ showTour.location }}</h5>
+                    <p class="card-text">Du {{ showTour.beginAt|date('d/m/Y') }}
+                        au {{ showTour.endAt|date('d/m/Y') }}</p>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">Adresse : {{ showTour.location }}</h5>
-                <p class="card-text">Du {{ showTour.beginAt|date('d/m/Y') }} au {{ showTour.endAt|date('d/m/Y') }}</p>
-            </div>
-        </div>
-        <a href="{{ path('order_add') }}">
-            <button class="btn btn-light mt-4">Payer</button>
-        </a>
+            <a href="{{ path('order_add') }}">
+                <button class="btn btn-lg btn-outline-info mt-4">Payer</button>
+            </a>
+        {% else %}
+            Vous devez choisir une date
+        {% endif %}
     {% else %}
         <p>Surprise, c'est vide !</p>
     {% endif %}
