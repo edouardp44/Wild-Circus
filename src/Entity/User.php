@@ -48,11 +48,6 @@ class User implements UserInterface
     private $country;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ticketing", mappedBy="user")
-     */
-    private $ticketings;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\OrderLink", mappedBy="user")
      */
     private $orderLinks;
@@ -169,37 +164,6 @@ class User implements UserInterface
     public function setCountry(?Country $country): self
     {
         $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Ticketing[]
-     */
-    public function getTicketings(): Collection
-    {
-        return $this->ticketings;
-    }
-
-    public function addTicketing(Ticketing $ticketing): self
-    {
-        if (!$this->ticketings->contains($ticketing)) {
-            $this->ticketings[] = $ticketing;
-            $ticketing->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTicketing(Ticketing $ticketing): self
-    {
-        if ($this->ticketings->contains($ticketing)) {
-            $this->ticketings->removeElement($ticketing);
-            // set the owning side to null (unless already changed)
-            if ($ticketing->getUser() === $this) {
-                $ticketing->setUser(null);
-            }
-        }
 
         return $this;
     }

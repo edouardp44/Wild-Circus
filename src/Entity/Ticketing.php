@@ -34,11 +34,6 @@ class Ticketing
     private $groupComposition;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ticketings")
-     */
-    private $user;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\OrderLink", mappedBy="ticket")
      */
     private $orderLinks;
@@ -86,18 +81,6 @@ class Ticketing
     public function setGroupComposition(string $groupComposition): self
     {
         $this->groupComposition = $groupComposition;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

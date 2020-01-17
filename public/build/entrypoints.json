@@ -34,6 +34,18 @@
         "/build/vendors~calendar.css",
         "/build/calendar.css"
       ]
+    },
+    "card": {
+      "js": [
+        "/build/runtime.js",
+        "/build/card.js"
+      ]
+    },
+    "test": {
+      "js": [
+        "/build/runtime.js",
+        "/build/test.js"
+      ]
     }
   }
 }

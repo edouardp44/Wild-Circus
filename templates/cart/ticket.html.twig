@@ -20,7 +20,10 @@
                 <td>{{ ticket.nbPlace }}</td>
                 <td>{{ ticket.groupComposition }}</td>
                 <td>
-                    <a href="{{ path('cart_add',{'id': ticket.id}) }}">Ajouté</a>
+                    <a href="{{ path('cart_add', {id : ticket.id}) }}">
+                    <button class="btn btn-outline-info">Ajouté</button>
+                    </a>
+                </td>
                 </td>
             </tr>
         {% else %}
@@ -30,5 +33,14 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('cart_show_tours') }}"><button class="btn-lg btn-outline-info">Valider</button></a>
+    {% if app.user %}
+        {% if item | length > 0 %}
+            <a href="{{ path('cart_show_tours') }}">
+                <button class="btn-lg btn-outline-info">Valider</button>
+            </a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
 {% endblock %}

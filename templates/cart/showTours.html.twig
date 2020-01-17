@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ dump(app.session.all) }}
     <h2 class="mt-3">Veuillez choisir une date</h2>
     {% for showTour in showTours %}
         <div class="card mt-4">

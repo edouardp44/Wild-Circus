@@ -54,7 +54,7 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_show_tours');
     }
     /**
-     * @Route("/add/{id}", name="add")
+     * @Route("/add/{id}", name="add", options = { "expose" = true })
      */
     public function addToCart($id): RedirectResponse
     {
@@ -74,6 +74,7 @@ class CartController extends AbstractController
     {
         return $this->render('/cart/ticket.html.twig', [
             'ticket' => $ticketingRepository->findAll(),
+            'item' => $this->cartManager->getFullCart(),
         ]);
 
     }
