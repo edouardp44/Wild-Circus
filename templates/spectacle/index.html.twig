@@ -5,16 +5,17 @@
 {% block body %}
     <div class="container">
     <h1>Tous nos Spectacle</h1>
-    <ul class="nav justify-content-center nav-tabs">
+    <ul class="nav justify-content-center nav-tabs" id="spectacle-list">
         {% for category in categorys %}
             {% if category.spectacles is not empty %}
                 <li class="nav-item">
-                    <a class="nav-link active"
-                       href="{{ path('spectacle_category', {'id': category.id} ) }}">{{ category.name }}</a>
+                    <a class="nav-link active" id="{{ category.id }}"
+                       href="#">{{ category.name }}</a>
                 </li>
             {% endif %}
         {% endfor %}
     </ul>
+        <div id="element">
     {% for spectacle in spectacles %}
         <div class="row mt-5">
             <div class="media">
@@ -30,4 +31,9 @@
             <td colspan="5">no records found</td>
         </tr>
     {% endfor %}
+        </div>
+        <div id="spectacle-detail"></div>
 {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('listSpectacle') }}
+        {% endblock %}

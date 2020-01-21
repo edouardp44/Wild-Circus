@@ -84,4 +84,5 @@ class AnimalsCategoryController extends AbstractController
 
         return $this->redirectToRoute('categoryAnimal_index');
     }
+
 }

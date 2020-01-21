@@ -3,6 +3,8 @@
   "build/app.js": "/build/app.js",
   "build/calendar.css": "/build/calendar.css",
   "build/calendar.js": "/build/calendar.js",
+  "build/listAnimal.js": "/build/listAnimal.js",
+  "build/listSpectacle.js": "/build/listSpectacle.js",
   "build/pdf.css": "/build/pdf.css",
   "build/pdf.js": "/build/pdf.js",
   "build/runtime.js": "/build/runtime.js",
@@ -11,6 +13,7 @@
   "build/vendors~app~pdf.js": "/build/vendors~app~pdf.js",
   "build/vendors~calendar.css": "/build/vendors~calendar.css",
   "build/vendors~calendar.js": "/build/vendors~calendar.js",
+  "build/vendors~listAnimal~listSpectacle.js": "/build/vendors~listAnimal~listSpectacle.js",
   "build/fonts/fa-brands-400.ttf": "/build/fonts/fa-brands-400.06147b6c.ttf",
   "build/fonts/fa-brands-400.eot": "/build/fonts/fa-brands-400.5063b105.eot",
   "build/fonts/fa-brands-400.woff": "/build/fonts/fa-brands-400.c5e0f14f.woff",
@@ -25,6 +28,5 @@
   "build/fonts/fa-solid-900.eot": "/build/fonts/fa-solid-900.8e4a6dcc.eot",
   "build/images/fa-brands-400.svg": "/build/images/fa-brands-400.a9c4bb73.svg",
   "build/images/fa-regular-400.svg": "/build/images/fa-regular-400.7b9568e6.svg",
-  "build/images/fa-solid-900.svg": "/build/images/fa-solid-900.c2801fb4.svg",
-  "build/vendors~pdf.js": "/build/vendors~pdf.js"
+  "build/images/fa-solid-900.svg": "/build/images/fa-solid-900.c2801fb4.svg"
 }

@@ -10,6 +10,7 @@ use App\Repository\SpectacleRepository;
 use App\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,14 +32,18 @@ class SpectacleController extends AbstractController
     }
 
     /**
-     * @Route("category/{id}", name="category")
+     * @return JsonResponse
+     * @Route("/detail/{id}", name="detail", options={"expose"=true})
      */
-    public function shwoByCategory(SpectacleCategoryRepository $categoryRepository, SpectacleCategory $spectacleCategory)
+    public function detail(SpectacleCategoryRepository $categoryRepository, SpectacleCategory $spectacleCategory): JsonResponse
     {
-        return $this->render('spectacle/showByCategory.html.twig', [
-            'categorys' => $categoryRepository->findAll(),
-            'spectacles' => $categoryRepository->findByAnimals($spectacleCategory->getId())
-        ]);
+        $data = [
+            $this->render('spectacle/detail.html.twig',[
+            'spectacles' => $categoryRepository->findByCategory($spectacleCategory->getId())
+                ])->getContent()
+            ];
+        return $this->json($data);
+
     }
 
     /**

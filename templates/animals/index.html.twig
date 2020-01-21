@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animals index{% endblock %}
+{% block title %}Nos animaux {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Nos annimaux</h1>
-        <ul class="nav justify-content-center nav-tabs">
-            {% for category in categorys %}
-                {% if category.animals is not empty %}
-                    <li class="nav-item">
-                        <a class="nav-link active"
-                           href="{{ path('animals_category', {'id': category.id} ) }}">{{ category.name }}</a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+    <h1>Nos animaux</h1>
+    <ul class="nav justify-content-center nav-tabs" id="animal-list">
+        {% for category in categorys %}
+            {% if category.animals is not empty %}
+                <li class="nav-item">
+                    <a class="nav-link active" id="{{ category.id }}"
+                       href="#">{{ category.name }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <div id="element">
         {% for animal in animals %}
             <div class="row mt-5">
                 <div class="media">
@@ -29,4 +29,9 @@
             <td colspan="6">no records found</td>
         {% endfor %}
     </div>
+    <div id="animals-detail">
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('listAnimal') }}
 {% endblock %}

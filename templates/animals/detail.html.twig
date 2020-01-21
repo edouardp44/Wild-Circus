@@ -1,0 +1,15 @@
+{% for category in categorysAnimals %}
+    {% for animal in category.animals %}
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="media">
+                    <img src="{{ animal.image }}" class="mr-3" alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{ animal.name }}</h5>
+                        {{ animal.description }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
