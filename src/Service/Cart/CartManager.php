@@ -17,10 +17,10 @@ class CartManager
         $this->ticketingRepository = $ticketingRepository;
     }
 
-    public function addShow($tour)
+    public function addShow($show)
     {
-        $show = $this->session->get('show', $tour);
-        $this->session->set('show', $tour);
+        $this->session->get('show', $show);
+        $this->session->set('show', $show);
     }
 
     public function delete(int $id)
@@ -54,7 +54,8 @@ class CartManager
         }
         $this->session->set('cart', $cart);
     }
-    public function getCartWithShow()
+
+    public function getSelectedShow()
     {
         $tour = $this->session->get('show');
         return $tour;
@@ -68,7 +69,7 @@ class CartManager
             $cartWithData[] = [
                 'ticket' => $this->ticketingRepository->find($id),
                 'quantity' => $quantity,
-                'show' => $this->getCartWithShow()
+                'show' => $this->getSelectedShow()
             ];
         }
         return $cartWithData;
@@ -82,4 +83,5 @@ class CartManager
         }
         return $total;
     }
+
 }

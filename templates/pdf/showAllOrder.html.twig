@@ -15,6 +15,7 @@
             <th scope="col">Quantité</th>
             <th scope="col">Date</th>
             <th scope="col">Prix unitaire</th>
+            <th scope="col">Total</th>
             <th scope="col">Prix Total</th>
             <th scope="col">Télécharger PDF</th>
         </tr>
@@ -26,6 +27,7 @@
                 <td>{{ user.quantity }}</td>
                 <td>{{ user.createAt|date('d/m/Y') }}</td>
                 <td>{{ user.price }}</td>
+                <td>{{ user.price * user.quantity }}</td>
                 <td>{{ user.priceTotal }}</td>
                 <td>
                     <a href="{{ path('pdf', {'id': user.id}) }}" class="btn btn-info">

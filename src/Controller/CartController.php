@@ -27,13 +27,14 @@ class CartController extends AbstractController
 
     /**
      * @Route("/", name="index")
+     * @IsGranted("ROLE_USER")
      */
     public function index(): Response
     {
         return $this->render('cart/index.html.twig', [
             'items' => $this->cartManager->getFullCart(),
             'total' => $this->cartManager->getTotal(),
-            'showTour' => $this->cartManager->getCartWithShow()
+            'showTour' => $this->cartManager->getSelectedShow()
         ]);
     }
 
@@ -51,15 +52,35 @@ class CartController extends AbstractController
      */
     public function addShow(ShowTour $showTour): RedirectResponse
     {
-        $this->cartManager->addShow($showTour);
-        return $this->redirectToRoute('cart_ticket');
+        if ($this->isGranted('ROLE_USER'))
+        {
+            $this->cartManager->addShow($showTour);
+            $this->addFlash('success', "Ca a bien été ajoutez à votre panier");
+            return $this->redirectToRoute('cart_ticket');
+        } else {
+            $this->addFlash('danger', 'Vous devez vous connecter pour acheter un billet');
+        }
     }
 
     /**
      * @Route("/add/{id}", name="add")
-     * @IsGranted("ROLE_USER")
      */
     public function addTicket($id): RedirectResponse
+    {
+        if ($this->isGranted('ROLE_USER')) {
+            $this->cartManager->add($id);
+            $this->addFlash('success', "Ca a bien été ajoutez à votre panier");
+        } else {
+            $this->addFlash('danger', 'Vous devez vous connecter pour acheter un billet');
+        }
+        return $this->redirectToRoute('cart_ticket');
+    }
+
+    /**
+     * @Route("/add/incart/{id}", name="add_in_cart")
+     * @IsGranted("ROLE_USER")
+     */
+    public function addTicketInCart($id): RedirectResponse
     {
         if ($this->isGranted('ROLE_USER')) {
             $this->cartManager->add($id);
@@ -74,21 +95,21 @@ class CartController extends AbstractController
      * @param $id
      * @return RedirectResponse
      * @Route("/delete/{id}", name = "delete")
+     * @IsGranted("ROLE_USER")
      */
     public function deleteOne($id): RedirectResponse
     {
         $this->cartManager->delete($id);
         return $this->redirectToRoute('cart_index');
-
     }
 
     /**
      * @Route("/ticket", name="ticket")
      */
-    public function ticketingList(TicketingRepository $ticketingRepository, ShowTourRepository $showTourRepository)
+    public function ticketing(TicketingRepository $ticketingRepository, ShowTourRepository $showTourRepository)
     {
         return $this->render('/cart/ticket.html.twig', [
-            'ticket' => $ticketingRepository->findAll(),
+            'tickets' => $ticketingRepository->findAll(),
             'item' => $this->cartManager->getFullCart(),
             'showTours' => $showTourRepository->findDateByBeginAt(),
 
@@ -98,10 +119,12 @@ class CartController extends AbstractController
 
     /**
      * @Route("/remove/{id}", name="remove")
+     * @IsGranted("ROLE_USER")
      */
     public function remove($id): RedirectResponse
     {
         $this->cartManager->remove($id);
         return $this->redirectToRoute('cart_index');
     }
+
 }

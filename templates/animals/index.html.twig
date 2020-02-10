@@ -5,6 +5,9 @@
 {% block body %}
     <h1>Nos animaux</h1>
     <ul class="nav justify-content-center nav-tabs" id="animal-list">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('animals_index') }}">Tous les animaux</a>
+        </li>
         {% for category in categorys %}
             {% if category.animals is not empty %}
                 <li class="nav-item">

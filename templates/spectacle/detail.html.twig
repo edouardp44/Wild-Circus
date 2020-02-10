@@ -3,7 +3,7 @@
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="media">
-                    <img src="{{ spectacle.image }}" class="mr-3" alt="...">
+                    <img src="{{ asset('uploads/images/'~ spectacle.image) }}" class="mr-3 imageSpectacle" alt="...">
                     <div class="media-body">
                         <h5 class="mt-0">{{ spectacle.name }}</h5>
                         {{ spectacle.description }}
@@ -13,3 +13,4 @@
         </div>
     {% endfor %}
 {% endfor %}
+{{ encore_entry_script_tags('app') }}

@@ -20,7 +20,7 @@
                 <tr>
                     <th scope="row">{{ item.ticket.groupComposition }}</th>
                     <td>{{ item.ticket.price }}</td>
-                    <td><a href="{{ path('cart_add', {'id': item.ticket.id}) }}" class="hello"><i
+                    <td><a href="{{ path('cart_add_in_cart', {'id': item.ticket.id}) }}" class="hello"><i
                                     class="fas fa-plus-circle"></i></a>
                         {{ item.quantity }}
                         <a href="{{ path('cart_delete', {'id': item.ticket.id}) }}"><i class="fas fa-minus-circle">
@@ -59,7 +59,7 @@
             Vous devez choisir une date
         {% endif %}
     {% else %}
-        <p>Surprise, c'est vide !</p>
+        <p>Vous n'avez pas encore remplis votre panier</p>
     {% endif %}
 {% endblock %}
 {% block javascripts %}

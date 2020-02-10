@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>Price</th>
-                <th>NbPlace</th>
                 <th>GroupComposition</th>
                 <th>actions</th>
             </tr>
@@ -18,7 +17,6 @@
         {% for ticketing in ticketings %}
             <tr>
                 <td>{{ ticketing.price }}</td>
-                <td>{{ ticketing.nbPlace }}</td>
                 <td>{{ ticketing.groupComposition }}</td>
                 <td>
                     <a href="{{ path('ticketing_edit', {'id': ticketing.id}) }}">edit</a>

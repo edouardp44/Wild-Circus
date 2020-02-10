@@ -33,22 +33,20 @@ class ShowTourRepository extends ServiceEntityRepository
 
     public function findDateByBeginAt()
     {
-        $table = $this->getClassMetadata()->table["name"];
-
         $sql = "SELECT * FROM show_tour 
-                WHERE begin_at < DATE(NOW() + INTERVAL 30 DAY) 
+                WHERE begin_at >= DATE(NOW()) 
                 AND end_at > DATE(NOW() - INTERVAL 30 DAY)
                 ORDER BY begin_at ASC";
+
         $rsm = new ResultSetMappingBuilder($this->getEntityManager());
         $rsm->addEntityResult(ShowTour::class, 'showTour');
 
-        // On mappe le nom de chaque colonne en base de données sur les attributs de nos entités
+        // On the map the name of each column in the database on the attributes of our entities
         foreach ($this->getClassMetadata()->fieldMappings as $obj) {
             $rsm->addFieldResult("showTour", $obj["columnName"], $obj["fieldName"]);
         }
 
         $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
-
 
         $stmt->execute();
 

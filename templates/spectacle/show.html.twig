@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container">
-        <img src="{{ asset('/uploads/images/'~ spectacle.image) }}">
+        <img src="{{ asset('uploads/images/'~ spectacle.image) }}">
         Nom du spectacle : {{ spectacle.name }}
         </br>
         Description du spectacle{{ spectacle.description }}
@@ -25,6 +24,5 @@
                 <button class="btn btn-light">Retour</button>
             </a>
         {% endif %}
-    </div>
 {% endblock %}
 

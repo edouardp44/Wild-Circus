@@ -19,7 +19,7 @@ class AnimalsCategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, AnimalsCategory::class);
     }
 
-    public function findByAnimals($id)
+    public function findByCategoryAnimals($id)
     {
         $query = $this->createQueryBuilder('category')
             ->innerJoin('category.animals', 'animals')

@@ -25,7 +25,7 @@ class HomeController extends AbstractController
         ShowTourRepository $showTourRepository
     ): Response
     {
-        return $this->render('Home/home.html.twig', [
+        return $this->render('home/home.html.twig', [
             'spectacles' => $spectacleRepository->findByThreeLast(),
             'animals' => $animalsRepository->findByThreeLast(),
             'ticketing' => $ticketingRepository->findAll(),
@@ -51,7 +51,7 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('admin_spectacle');
         }
 
-        return $this->render('Contact/contact.html.twig', [
+        return $this->render('contact/contact.html.twig', [
             'spectacle_category' => $message,
             'form' => $form->createView(),
         ]);

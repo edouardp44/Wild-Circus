@@ -42,7 +42,7 @@ class AnimalsController extends AbstractController
     {
         $data = [
             $this->render("animals/detail.html.twig", [
-                'categorysAnimals' => $animalsCategoryRepository->findByAnimals($animalsCategory->getId())
+                'categorysAnimals' => $animalsCategoryRepository->findByCategoryAnimals($animalsCategory->getId())
             ])->getContent()
         ];
         return $this->json($data);

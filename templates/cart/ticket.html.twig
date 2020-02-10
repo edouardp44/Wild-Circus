@@ -8,22 +8,19 @@
         <thead>
         <tr>
             <th>Price</th>
-            <th>NbPlace</th>
             <th>GroupComposition</th>
             <th>actions</th>
         </tr>
         </thead>
         <tbody>
-        {% for ticket in ticket %}
+        {% for ticket in tickets %}
             <tr>
                 <td>{{ ticket.price }}</td>
-                <td>{{ ticket.nbPlace }}</td>
                 <td>{{ ticket.groupComposition }}</td>
                 <td>
                     <a href="{{ path('cart_add', {id : ticket.id}) }}">
                     <button class="btn btn-outline-info">Ajouté</button>
                     </a>
-                </td>
                 </td>
             </tr>
         {% else %}

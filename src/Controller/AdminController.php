@@ -23,7 +23,7 @@ class AdminController extends AbstractController
      */
     public function indexAnimals(AnimalsRepository $animalsRepository): Response
     {
-        return $this->render('Admin/animals.html.twig', [
+        return $this->render('admin/animals.html.twig', [
             'animals' => $animalsRepository->findAll()
         ]);
     }
@@ -33,7 +33,7 @@ class AdminController extends AbstractController
      */
     public function indexSpectacle(SpectacleRepository $spectacleRepository): Response
     {
-        return $this->render('Admin/spectacle.html.twig', [
+        return $this->render('admin/spectacle.html.twig', [
             'spectacles' => $spectacleRepository->findAll()
         ]);
     }
@@ -43,7 +43,7 @@ class AdminController extends AbstractController
      */
     public function indexStaff(StaffRepository $staffRepository): Response
     {
-        return $this->render('Admin/staff.html.twig', [
+        return $this->render('admin/staff.html.twig', [
             'staffs' => $staffRepository->findAll()
         ]);
     }
@@ -53,7 +53,7 @@ class AdminController extends AbstractController
      */
     public function indexMessage(MessageRepository $messageRepository): Response
     {
-        return $this->render('Admin/contact.html.twig', [
+        return $this->render('admin/contact.html.twig', [
             'messages' => $messageRepository->findAll(),
         ]);
     }

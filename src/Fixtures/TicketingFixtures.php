@@ -19,7 +19,6 @@ class TicketingFixtures extends Fixture
         foreach (self::GROUPCOMPISTION as $key => $groupComposition ) {
             $ticketing = new Ticketing();
             $ticketing->setGroupComposition($groupComposition);
-            $ticketing->setNbPlace(200);
             $ticketing->setPrice(30);
             $manager->persist($ticketing);
         }

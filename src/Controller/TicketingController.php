@@ -60,7 +60,6 @@ class TicketingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('ticketing_index');
         }
 

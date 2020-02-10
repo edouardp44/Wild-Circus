@@ -24,12 +24,7 @@ class Ticketing
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $nbPlace;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
      */
     private $groupComposition;
 
@@ -40,7 +35,6 @@ class Ticketing
 
     public function __construct()
     {
-        $this->ordersLine = new ArrayCollection();
         $this->orderLinks = new ArrayCollection();
     }
 
@@ -60,18 +54,7 @@ class Ticketing
 
         return $this;
     }
-
-    public function getNbPlace(): ?int
-    {
-        return $this->nbPlace;
-    }
-
-    public function setNbPlace(int $nbPlace): self
-    {
-        $this->nbPlace = $nbPlace;
-
-        return $this;
-    }
+    
 
     public function getGroupComposition(): ?string
     {

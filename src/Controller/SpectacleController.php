@@ -77,12 +77,14 @@ class SpectacleController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Spectacle $spectacle): Response
+    public function edit(Request $request, Spectacle $spectacle, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(SpectacleType::class, $spectacle);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $fileUploader->upload($form->get('image')->getData());
+            $spectacle->setImage($file);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_spectacle');
