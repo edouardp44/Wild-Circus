@@ -20,13 +20,15 @@ class SpectacleType extends AbstractType
         $builder
             ->add('image', FileType::class, [
                 'label' => 'images',
-                'data_class' => null
+                'data_class' => null,
+                'required' => false
             ])
             ->add('name', TextType::class, ['label' => 'nom'])
             ->add('description', TextType::class, ['label' => 'description']);
         $builder
             ->add('staff', EntityType::class, [
                 'class' => Staff::class,
+                'label' => "L'équipe",
                 'choice_label' => 'name',
                 'data_class' => null,
                 'multiple' => true,
@@ -39,7 +41,7 @@ class SpectacleType extends AbstractType
                 'data_class' => null,
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'Les annimaux du spectacle',
+                'label' => 'Les animaux dans spectacle',
                 'required' => false,
 
             ]);
@@ -48,7 +50,6 @@ class SpectacleType extends AbstractType
                 'class' => SpectacleCategory::class,
                 'choice_label' => 'name',
                 'label' => 'Category',
-                'data_class' => null
             ]);
     }
 

@@ -12,6 +12,7 @@ use App\Repository\SpectacleRepository;
 use App\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,14 +34,18 @@ class AnimalsController extends AbstractController
     }
 
     /**
-     * @Route("/category/{id}", name="category")
+     * @param AnimalsCategoryRepository $animalsCategoryRepository
+     * @param AnimalsCategory $animalsCategory
+     * @Route("/detail/{id}", name="detail", options={"expose"=true})
      */
-    public function showAnimalByCategory(AnimalsCategoryRepository $categoryRepository, AnimalsCategory $animalCategory)
+    public function detail(AnimalsCategoryRepository $animalsCategoryRepository, AnimalsCategory $animalsCategory): JsonResponse
     {
-        return $this->render('animals/showByCategory', [
-            'categorysAnimals' => $categoryRepository->findByAnimals($animalCategory->getId()),
-            'categorys' => $categoryRepository->findAll(),
-        ]);
+        $data = [
+            $this->render("animals/detail.html.twig", [
+                'categorysAnimals' => $animalsCategoryRepository->findByCategoryAnimals($animalsCategory->getId())
+            ])->getContent()
+        ];
+        return $this->json($data);
     }
 
     /**
@@ -112,7 +117,7 @@ class AnimalsController extends AbstractController
     /**
      *@Route("/show/{id}", name="show")
      */
-    public function show(Animals $animals,SpectacleRepository $spectacle): Response
+    public function show(Animals $animals): Response
     {
         return $this->render('/animals/show.html.twig', [
             'animal' => $animals,

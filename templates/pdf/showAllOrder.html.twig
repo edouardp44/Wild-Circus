@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block javascript %}
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <table class="table mt-3">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Composition du groupe</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Date</th>
+            <th scope="col">Prix unitaire</th>
+            <th scope="col">Total</th>
+            <th scope="col">Prix Total</th>
+            <th scope="col">Télécharger PDF</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in user %}
+            <tr>
+                <th scope="row">{{ user.ticket.groupComposition }}</th>
+                <td>{{ user.quantity }}</td>
+                <td>{{ user.createAt|date('d/m/Y') }}</td>
+                <td>{{ user.price }}</td>
+                <td>{{ user.price * user.quantity }}</td>
+                <td>{{ user.priceTotal }}</td>
+                <td>
+                    <a href="{{ path('pdf', {'id': user.id}) }}" class="btn btn-info">
+                        <i class="fas fa-upload"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -32,6 +36,35 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="users")
+     */
+    private $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderLink", mappedBy="user")
+     */
+    private $orderLinks;
+
+    /**
+     * the token which will be used when forgetting a password
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resetToken;
+
+
+    public function __construct()
+    {
+        $this->ticketings = new ArrayCollection();
+        $this->orders = new ArrayCollection();
+        $this->orderLinks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -110,4 +143,76 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OrderLink[]
+     */
+    public function getOrderLinks(): Collection
+    {
+        return $this->orderLinks;
+    }
+
+    public function addOrderLink(OrderLink $orderLink): self
+    {
+        if (!$this->orderLinks->contains($orderLink)) {
+            $this->orderLinks[] = $orderLink;
+            $orderLink->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderLink(OrderLink $orderLink): self
+    {
+        if ($this->orderLinks->contains($orderLink)) {
+            $this->orderLinks->removeElement($orderLink);
+            // set the owning side to null (unless already changed)
+            if ($orderLink->getUser() === $this) {
+                $orderLink->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResetToken(): string
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * @param mixed $resetToken
+     */
+    public function setResetToken(?string $resetToken): void
+    {
+        $this->resetToken = $resetToken;
+    }
 }
+

@@ -111,11 +111,38 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "friendsofsymfony/jsrouting-bundle": {
+        "version": "2.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.3",
+            "ref": "a9f2e49180f75cdc71ae279a929c4b2e0638de84"
+        },
+        "files": [
+            "config/routes/fos_js_routing.yaml"
+        ]
+    },
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "knplabs/knp-snappy": {
+        "version": "v1.2.0"
+    },
+    "knplabs/knp-snappy-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
+        },
+        "files": [
+            "config/packages/knp_snappy.yaml"
+        ]
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -538,11 +565,26 @@
     "symfony/yaml": {
         "version": "v4.3.2"
     },
+    "tattali/calendar-bundle": {
+        "version": "1.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.1",
+            "ref": "0c643e17b5340747b35c2c75e11727fa31bfa9bb"
+        },
+        "files": [
+            "config/routes/calendar.yaml"
+        ]
+    },
     "twig/twig": {
         "version": "v2.11.3"
     },
     "webmozart/assert": {
         "version": "1.4.0"
+    },
+    "willdurand/jsonp-callback-validator": {
+        "version": "v1.1.0"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"

@@ -1,0 +1,16 @@
+<h1> Votre cirque préférer va bientot passer chez vous</h1>
+
+{% block body %}
+    <div class="container">
+        {% for show in show %}
+            <div class="row">
+                <div>la ville : {{ show.city }}</div>
+                <div>la rue : {{ show.location }}</div>
+                <div>sa commence a partir du {{ show.beginAt|date('d/m/Y') }}</div>
+                <div>et ce termine a partir du {{ show.endAt|date('d/m/Y') }}</div>
+            </div>
+            <br/>
+        {% endfor %}
+    </div>
+
+{% endblock %}

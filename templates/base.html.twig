@@ -1,67 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Wild Circus{% endblock %}</title>
-    {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 </head>
 <body>
-{% if is_granted('ROLE_ADMIN') %}
-    <ul class="nav justify-content-start">
-        <li class="nav-item mr-3"> Wild Circus !!</li>
-        {% if app.user %}
-            <a href="{{ path('app_logout') }}"> Se déconnecter</a>
-        {% else %}
-            <a href="{{ path('app_login') }}"> Se connecter</a>
-        {% endif %}
-    </ul>
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('admin_animals') }}">Nos animaux</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_spectacle') }}">Tous les spectacles</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_staff') }}">L'équipe </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('categoryAnimal_index') }}">Catégories d'annimaux</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('categorySpectacle_index') }}">Catégories de spectacle</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_messages') }}">Messages</a>
-        </li>
-    </ul>
-{% else %}
-    <ul class="nav justify-content-start">
-        <li class="nav-item"> Wild Circus !!</li>
-    </ul>
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('animals_index') }}">Nos animaux</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('spectacle_index') }}">Tous les spectacles</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('staff_index') }}">L'équipe </a>
-        </li>
-    </ul>
-{% endif %}
-{% block body %}
-    <div class="container">
-        {% for category, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
-    </div>
+{{ include('nav.html.twig') }}
+{% for category, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+<div class="container">
+    {% block body %}
+    {% endblock %}
+</div>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+            crossorigin="anonymous"></script>
 {% endblock %}
-{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
 </body>
+<footer>
+    {{ include('footer.html.twig') }}
+</footer>
 </html>

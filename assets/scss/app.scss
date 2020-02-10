@@ -1,1 +1,43 @@
 @import "~bootstrap";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+a {
+  text-decoration: none !important;
+  color: #C10000;
+}
+
+a:hover {
+  color: darkred;
+}
+
+.globalNav{
+  background-color: #C10000;
+  color: white;
+}
+
+.nav-link {
+  text-decoration: none !important;
+  color: #FFFFFF;
+  text-decoration-color: #FFFFFF;
+}
+.nav-link:hover {
+  color:  wheat;
+}
+
+h1 {
+  color: #C10000;
+}
+.imgCarousel {
+  height: 150px
+}
+
+.textCarousel {
+  margin-top: 100px;
+  color: sienna;
+}
+
+.imageSpectacle {
+  height: 130px;
+  width: 130px;
+}
+

@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container">
-        <img src="{{ asset('/uploads/images/'~ spectacle.image) }}">
+        <img src="{{ asset('uploads/images/'~ spectacle.image) }}">
         Nom du spectacle : {{ spectacle.name }}
         </br>
         Description du spectacle{{ spectacle.description }}
@@ -16,9 +15,14 @@
             {{ animalsSpectacle.name }}
         {% endfor %}
         </br>
-        <a href="{{ path('admin_spectacle') }}">
-            <button class="btn btn-light">Retour à la liste</button>
-        </a>
-    </div>
+        {% if is_granted('Role_Admin') %}
+            <a href="{{ path('admin_spectacle') }}">
+                <button class="btn btn-light">Retour à la liste</button>
+            </a>
+        {% else %}
+            <a href="{{ path('home') }}">
+                <button class="btn btn-light">Retour</button>
+            </a>
+        {% endif %}
 {% endblock %}
 

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShowTour index{% endblock %}
+
+{% block body %}
+    <h1>ShowTour index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>City</th>
+                <th>Location</th>
+                <th>BeginAt</th>
+                <th>EndAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for show_tour in show_tours %}
+            <tr>
+                <td>{{ show_tour.id }}</td>
+                <td>{{ show_tour.city }}</td>
+                <td>{{ show_tour.location }}</td>
+                <td>{{ show_tour.beginAt ? show_tour.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ show_tour.endAt ? show_tour.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('show_tour_show', {'id': show_tour.id}) }}">show</a>
+                    <a href="{{ path('show_tour_edit', {'id': show_tour.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('show_tour_new') }}">Create new</a>
+{% endblock %}

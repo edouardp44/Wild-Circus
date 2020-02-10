@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShowTour{% endblock %}
+
+{% block body %}
+    <table class="table table-striped mt-3">
+        <tbody>
+        <tr>
+            <th>Ville</th>
+            <td>{{ show_tour.city }}</td>
+        </tr>
+        <tr>
+            <th>Localisation</th>
+            <td>{{ show_tour.location }}</td>
+        </tr>
+        <tr>
+            <th> Région</th>
+            <td>{{ show_tour.country.region }}
+        </tr>
+        <tr>
+            <th>Commence le</th>
+            <td>{{ show_tour.beginAt ? show_tour.beginAt|date('d-m-Y') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Finis le</th>
+            <td>{{ show_tour.endAt ? show_tour.endAt|date('d-m-Y') : '' }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('show_tour_calendar') }}">
+        <button class="btn btn-outline-info"> Retour</button>
+    </a>
+    <a href="{{ path('show_tour_edit', {'id': show_tour.id}) }}">
+        <button class="btn btn-outline-info mr-3"> Modifier</button>
+    </a>
+    <div class="mt-3">
+        {{ include('show_tour/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

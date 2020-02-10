@@ -24,6 +24,10 @@ Encore
      * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('pdf', './assets/js/pdf.js')
+    .addEntry('calendar', './assets/js/calendar.js')
+    .addEntry('listAnimal', './assets/js/listAnimal.js')
+    .addEntry('listSpectacle', './assets/js/listSpectacle.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -66,7 +70,7 @@ Encore
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
 
-    // uncomment if you use API Platform Admin (composer req api-admin)
+    // uncomment if you use API Platform admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
 ;

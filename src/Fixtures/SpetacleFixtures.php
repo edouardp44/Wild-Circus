@@ -20,7 +20,7 @@ class SpetacleFixtures extends Fixture implements DependentFixtureInterface
             $spectacle->setDate($faker->dateTime);
             $spectacle->setImage('https://picsum.photos/150/150');
             $spectacle->addStaff($this->getReference('staff_' . $i));
-            $spectacle->addCategory($this->getReference('spectacle_' . $i));
+            $spectacle->setCategory($this->getReference('spectacle_' . $i));
             $manager->persist($spectacle);
         }
         $manager->flush();

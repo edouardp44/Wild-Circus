@@ -3,11 +3,50 @@
     "app": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors~app.js",
+        "/build/vendors~app~pdf.js",
+        "/build/vendors~app~calendar.js",
         "/build/app.js"
       ],
       "css": [
+        "/build/vendors~app~calendar.css",
         "/build/app.css"
+      ]
+    },
+    "pdf": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors~app~pdf.js",
+        "/build/pdf.js"
+      ],
+      "css": [
+        "/build/pdf.css"
+      ]
+    },
+    "calendar": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors~app~calendar.js",
+        "/build/vendors~calendar.js",
+        "/build/calendar.js"
+      ],
+      "css": [
+        "/build/vendors~app~calendar.css",
+        "/build/vendors~calendar.css",
+        "/build/calendar.css"
+      ]
+    },
+    "listAnimal": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors~listAnimal~listSpectacle.js",
+        "/build/listAnimal.js"
+      ]
+    },
+    "listSpectacle": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors~listAnimal~listSpectacle.js",
+        "/build/listSpectacle.js"
       ]
     }
   }

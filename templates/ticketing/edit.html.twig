@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ticketing{% endblock %}
+
+{% block body %}
+    <h1>Edit Ticketing</h1>
+
+    {{ include('ticketing/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ticketing_index') }}">back to list</a>
+
+    {{ include('ticketing/_delete_form.html.twig') }}
+{% endblock %}

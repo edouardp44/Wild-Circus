@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Message;
 use App\Form\MessageType;
 use App\Repository\AnimalsRepository;
+use App\Repository\ShowTourRepository;
 use App\Repository\SpectacleRepository;
+use App\Repository\TicketingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +18,18 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function showLast(SpectacleRepository $spectacleRepository,  AnimalsRepository $animalsRepository): Response
+    public function showLast(
+        SpectacleRepository $spectacleRepository,
+        AnimalsRepository $animalsRepository,
+        TicketingRepository $ticketingRepository,
+        ShowTourRepository $showTourRepository
+    ): Response
     {
-        return $this->render('Home/home.html.twig', [
+        return $this->render('home/home.html.twig', [
             'spectacles' => $spectacleRepository->findByThreeLast(),
             'animals' => $animalsRepository->findByThreeLast(),
+            'ticketing' => $ticketingRepository->findAll(),
+            'showTours' => $showTourRepository->findDateByBeginAt()
         ]);
     }
 
@@ -42,7 +51,7 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('admin_spectacle');
         }
 
-        return $this->render('Contact/contact.html.twig', [
+        return $this->render('contact/contact.html.twig', [
             'spectacle_category' => $message,
             'form' => $form->createView(),
         ]);

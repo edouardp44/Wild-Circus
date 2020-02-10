@@ -1,0 +1,65 @@
+<ul class="nav globalNav">
+    <li class="nav-item ml-5 mt-2">
+        Wild Cirucus
+    </li>
+    <li class="nav-item mr-3">
+    {% if app.user %}
+        <a class="nav-link active" href="{{ path('app_logout') }}"> Se déconnecter</a>
+    {% else %}
+        <a class="nav-link active" href="{{ path('app_login') }}"> Se connecter</a>
+    {% endif %}
+    </li>
+{% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('show_tour_calendar') }}">Calendrier</a>
+        </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Les catégories</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{ path('categorySpectacle_index') }}">Catégories de spectacle</a>
+            <a class="dropdown-item" href="{{ path('categoryAnimal_index') }}">Catégories d'annimaux</a>
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_animals') }}">Nos animaux</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_spectacle') }}">Tous les spectacles</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_staff') }}">L'équipe </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_messages') }}">Messages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('ticketing_index') }}">Billetterie</a>
+        </li>
+    </ul>
+{% else %}
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('home') }}">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('animals_index') }}">Nos animaux</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('spectacle_index') }}">Tous les spectacles</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('staff_index') }}">L'équipe </a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{{ path('cart_ticket') }}">Billeterie</a>
+        </li>
+         {% if app.user %}
+            <li class="nav-item">
+                 <a class="nav-link" href="{{ path('cart_index') }}">Panier</a>
+            </li>
+             <li class="nav-item">
+                 <a class="nav-link" href="{{ path('order_show') }}">Mes commandes</a>
+             </li>
+         {% endif %}
+{% endif %}
+</ul>
+
+{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}

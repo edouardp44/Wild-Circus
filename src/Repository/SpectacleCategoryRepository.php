@@ -19,7 +19,7 @@ class SpectacleCategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, SpectacleCategory::class);
     }
 
-    public function findByAnimals($id)
+    public function findByCategory($id)
     {
         $query = $this->createQueryBuilder('category')
             ->innerJoin('category.spectacles', 'spectacles')
